@@ -1,0 +1,145 @@
+#grid1{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 4.5rem; /* for navbar */
+    column-gap: 5em;
+    padding: 3em 5em 1em 5em;
+}
+
+#section1 img{
+    width: 100%;
+    aspect-ratio: 4/3;
+}
+/*section2-start*/
+#section2 .head{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: .6em;
+}
+
+#section2 .title{
+    font-size: 2em;
+    font-family: "Playfair Display";
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+#section2 .price{
+    font-size: 1.6em;
+    font-weight: 500;
+}
+
+
+#section2 .desc{
+    font-size: .7em;
+    font-weight: 500;
+    color: rgb(112, 112, 112);
+}
+
+#section2 .options{
+  display: inline-flex;
+  align-items: stretch;
+}
+
+#section2 .options select{
+    font-size: 1em;
+}
+
+#section2 .options .step{
+  padding: 0 1em;        
+  background: none;
+  color: black;
+  background-color: rgb(243, 243, 243);
+  box-shadow: 0 .2em .5em rgba(0, 0, 0, .05);
+  border: solid .1em rgb(223, 223, 223);
+}
+
+#section2 .options .step.plus{
+  border-radius: 0 .6em .6em 0;
+}
+
+#section2 .options .step.minus{
+  border-radius: .6em 0 0 .6em;
+}
+
+#section2 .buttons{
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 1em;
+    margin-top: 2em;
+}
+
+#section2 button{
+    border-radius: .6em;
+    padding: 1em 1.2em;
+    font-weight: 600;
+    font-size: 1em;
+    box-shadow: 0 .2em .5em rgba(0, 0, 0, .05);
+    border: solid .1em var(--button-color-a);
+}
+
+#section2 button > div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .8em;
+}
+
+#section2 button:last-of-type{
+    background: linear-gradient(to bottom, white, rgba(0, 0, 0, .01));
+    color: black;
+    border: solid .1em rgb(239, 239, 239);
+}
+
+#section2 button:last-of-type:hover{
+    background: linear-gradient(to bottom, white, rgba(0, 0, 0, .03));
+}
+/*section2-end*/
+
+#section4 .grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 1em;
+}
+
+#section4 .item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: solid rgb(241, 241, 241) .05em;
+  border-radius: 1em;
+  box-shadow: 0 .5em 1em rgba(0, 0, 0, .1);
+  padding: 1.2em .5em;
+  gap: .5em;
+  cursor: pointer;
+
+  transition: transform 200ms ease, box-shadow 200ms ease;
+  transform-origin: center;
+}
+
+#section4 .item:hover {
+  transform: scale(1.03);
+  box-shadow: 0 .5em 1em rgba(0, 0, 0, .15);
+}
+
+#section4 .item img{
+  width: 100%;
+  aspect-ratio: 4/2.8;
+  object-fit: fill;
+  margin-top: .5em;
+}
+
+#section4 .item p{
+  font-size: 1.2em;
+}
+
+#section4 .item p:last-of-type{
+  font-size: 1.1em;
+}
+
+#section4 button{
+  font-size: 1em;
+  padding: .4em 1.5em;
+  margin-top: .4em;
+}

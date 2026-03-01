@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static "css/base.css" %}">
+    <link rel="stylesheet" href="{% static "css/layout.css" %}">
+    {% block extra_css %}{% endblock extra_css %}
+</head>
+<body>
+    <nav id="navbar">
+        <a style="height: 70%;align-content:center;" href="/"><img src="{% static "images/logo2.png" %}" alt="logo didn't show"></a>
+        <div id="navbar-right">
+            <div id="page-list">
+                <div class="page-list-item"><a href="#">Startseite</a><div class="page-list-select"></div></div>
+                <div class="page-list-item"><a href="#">Produkte</a><div class="page-list-select"></div></div>
+                <div class="page-list-item"><a href="#">Über uns</a><div class="page-list-select"></div></div>
+                <div class="page-list-item"><a href="#">Kontakt</a><div class="page-list-select"></div></div>
+            </div>
+            <div id="shopping-cart">
+                <div class="icon">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span id="cart-badge">3</span>
+                </div>
+                <p>Warenkorb</p>
+            </div>
+            <div id="hamburger">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+    {% block BodyBlock %}
+
+    {% endblock BodyBlock %}
+    <div id="footer">
+        <div class="container">
+            <div class="item">
+                <p>Über Uns</p>
+                <p>Unsere Philosophie</p>
+                <p>Unser Team</p>
+                <p>Kontakt</p>
+            </div>
+            <div class="item">
+                <p>Produkte</p>
+                <p>Fruchtkorbe</p>
+                <p>Saisonales Obst</p>
+                <p>Bio Produkte</p>
+            </div>
+            <div class="item">
+                <p>Schenelizugriff</p>
+                <p>Warenkorb</p>
+                <p>Vorverdinformationen</p>
+                <p>PAGS</p>
+                <p>AGB</p>
+            </div>
+            <div class="item">
+                <p>Kontakt</p>
+                <p>Varvenkorker 1</p>
+                <p>12349</p>
+            </div>
+            <div class="item">
+                <div>
+                    <i class="fa-solid fa-phone"></i>
+                    <p>+49 123 4567890</p>
+                </div>
+                <div>
+                    <i class="fa-solid fa-envelope"></i>
+                    <p>info@sarisoydbstkorb.de</p>
+                </div>
+                <div>
+                    <i class="fa-solid fa-location-dot"></i>
+                    <p>Musterstrake. 1, 12349 Musterstadt</p>
+                </div>
+            </div>
+        </div>
+        <div class="bottom"></div>
+    </div>
+    <script src="https://kit.fontawesome.com/44f61e66cc.js" crossorigin="anonymous"></script>
+    {% block extra_script %}{% endblock extra_script %}
+    <script src="{% static "js/layout.js" %}"></script>
+</body>
+</html>
