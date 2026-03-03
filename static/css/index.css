@@ -1,8 +1,4 @@
 /*section1-start*/
-#section1{
-  margin-top: 4.5rem; /* for navbar */
-}
-
 #section1 .container{
   display: flex;
   justify-content: center;

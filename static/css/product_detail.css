@@ -1,15 +1,71 @@
 #grid1{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    margin-top: 4.5rem; /* for navbar */
     column-gap: 5em;
     padding: 3em 5em 1em 5em;
 }
 
-#section1 img{
-    width: 100%;
+/*section1-start*/
+#section1 .gallery {  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} 
+
+#section1 .main-image {  
+  display: flex;
+  justify-content: center;
+  border-radius: 12px;  
+  overflow: hidden;  
+  margin-bottom: 2rem;  
+}  
+
+#section1 .main-image img {  
     aspect-ratio: 4/3;
-}
+    width: 100%;  
+    display: block;  
+}  
+
+#section1 .thumbs {  
+    display: flex;  
+    align-items: center;  
+    gap: .6rem;  
+}  
+
+#section1 .thumbs img {  
+  width: 70px;  
+  height: 50px;  
+  object-fit: cover;  
+  border-radius: 6px;  
+  cursor: pointer;  
+  opacity: .6;  
+  border: 2px solid transparent;  
+  transition: all .2s ease;  
+}  
+
+#section1 .thumbs img:hover {  
+  opacity: 1;  
+}  
+
+#section1 .thumbs img.active {  
+  opacity: 1;  
+  border-color: #f5b700;  
+}  
+
+#section1 .nav {  
+  background: none;  
+  border: none;  
+  font-size: 1.5em;  
+  cursor: pointer;  
+  color: #999;  
+  padding: .5em;
+}  
+
+#section1 .nav:hover {  
+  color: #000;  
+}  
+/*section1-end*/
+
 /*section2-start*/
 #section2 .head{
     display: flex;
@@ -42,17 +98,31 @@
   align-items: stretch;
 }
 
+#options-container{
+  display: flex;
+  align-items: center;
+  gap: .8em;
+  margin-top: .5em;
+}
+
 #section2 .options select{
-    font-size: 1em;
+    font-size: .9em;
+    font-weight: 400;
+    border-top: solid .07em rgb(223, 223, 223);
+    border-bottom: solid .07em rgb(223, 223, 223);
+    border-left: none;
+    border-right: none;
+    padding: .5em .25em;
 }
 
 #section2 .options .step{
-  padding: 0 1em;        
+  padding: 0 .5em;        
   background: none;
   color: black;
   background-color: rgb(243, 243, 243);
-  box-shadow: 0 .2em .5em rgba(0, 0, 0, .05);
-  border: solid .1em rgb(223, 223, 223);
+  border: solid .07em rgb(223, 223, 223);
+  font-weight: 500;
+  font-size: 1.2em;
 }
 
 #section2 .options .step.plus{
@@ -61,6 +131,28 @@
 
 #section2 .options .step.minus{
   border-radius: .6em 0 0 .6em;
+}
+
+#section2 .options .step.plus:hover{
+    background: white;
+}
+
+#section2 .options .step.minus:hover{
+    background: white;
+}
+
+#section2 small{
+    font-size: 2em;
+}
+
+#section2 .delivery{
+    display: flex;
+    align-items: center;
+    gap: .5em;
+    padding: 1em 0; 
+    font-size: .7em;
+    font-weight: 500;
+    color: rgb(112, 112, 112);
 }
 
 #section2 .buttons{
@@ -97,13 +189,113 @@
 }
 /*section2-end*/
 
-#section4 .grid{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    column-gap: 1em;
+/*section3-start*/
+#section3{
+    border-top: solid .15em rgb(245, 245, 245);
+    border-bottom: solid .15em rgb(245, 245, 245);
+    background-color: rgb(252, 252, 252);
+}
+
+#section3 .container{
+    padding: 2em 5em;
+}
+
+#section3 .title{
+    display: flex;
+    align-items: center;
+    gap: .8em;
+
+    font-family: 'Playfair Display';
+    font-weight: 600;
+    font-size: 1.3em;
+    white-space: nowrap;
+}
+
+#section3 .content{
+    display: flex;
+    flex-direction: column;
+    gap: .8em;
+    color: rgb(56, 56, 56);
+    font-size: .95em;
+    margin-top: 1.5em;
+}
+
+#section3 .content ul{
+    display: flex;
+    gap: 1em;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#section3 .fotter{
+    background-color: white;
+    padding: 1em 1em;
+    font-size: .95em;
+    box-shadow: 0 0 .8em rgba(0, 0, 0, 0.05);
+    border-radius: .5em;
+}
+
+#section3 .fotter > div{   
+    display: flex;
+    gap: .5em;
+    padding: .2em 0;
+}
+
+#section3 .fotter > div i{   
+    color: var(--primary-color);
+    font-size: 1em;
+}
+/*section3-end*/
+
+/*section4-start*/
+#section4 .container{
+    padding: 2em 5em;
+}
+
+#section4 .title{
+    display: flex;
+    align-items: center;
+    gap: .8em;
+
+    font-family: 'Playfair Display';
+    font-weight: 600;
+    font-size: 1.2em;
+    white-space: nowrap;
+}
+
+#section4 .scroller{
+    display: flex;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 1em;
+    padding: 1em 1em;
+
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+
+    /* Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) transparent;
+}
+
+/* Chrome / Safari / Edge */
+#section4 .scroller::-webkit-scrollbar{
+  height: 3px;
+}
+
+#section4 .scroller::-webkit-scrollbar-track{
+  background: transparent;
+}
+
+#section4 .scroller::-webkit-scrollbar-thumb{
+  background: var(--primary-color);
+  border-radius: 10px;
 }
 
 #section4 .item {
+  min-width: 250px;
+  flex: 0 0 23%;    
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -128,6 +320,7 @@
   aspect-ratio: 4/2.8;
   object-fit: fill;
   margin-top: .5em;
+  min-width: 0;
 }
 
 #section4 .item p{
@@ -142,4 +335,99 @@
   font-size: 1em;
   padding: .4em 1.5em;
   margin-top: .4em;
+}
+
+#section4 .scroller-wrapper{
+  position: relative;
+}
+
+#section4 .scroll-btn{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+
+  margin: 0;
+  padding: 1.3em;
+
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 2em;
+  height: 2em;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 4px 10px rgba(0,0,0,.15);
+  cursor: pointer;
+
+  color: var(--primary-color);
+  transition: all .2s ease;
+}
+
+#section4 .scroll-btn:hover{
+  background: var(--primary-color);
+  color: #fff;
+}
+
+#section4 .scroll-btn.left{
+  left: -18px;
+}
+
+#section4 .scroll-btn.right{
+  right: -18px;
+}
+/*section4-end*/
+
+@media (max-width: 1100px){
+  #grid1{
+      column-gap: 2em;
+  }
+  
+  #section2 .buttons{
+    grid-template-columns: 1fr;
+    gap: .5em;
+  }
+}
+
+@media (max-width: 1000px){
+  #grid1{
+      padding: 3em 2em 1em 2em;
+  }
+
+  #section3 .container{
+      padding: 2em 2em;
+  }
+
+  #section4 .container{
+      padding: 2em 2em;
+  }
+}
+
+@media (max-width: 640px){
+  #grid1{
+    grid-template-columns: 1fr;
+    padding: 2em 1em 2em 1em;
+    row-gap: 2em;
+  }
+
+  #section1 .main-image img {  
+    width: 80%;  
+  }  
+
+  #section3 .container{
+      padding: 2em 2em;
+  }
+
+  #section4 .container{
+      padding: 2em 2em;
+  }
+}
+
+@media (max-width: 450px){
+  #section3 .content ul{
+    display: block;
+  }
 }

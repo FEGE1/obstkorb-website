@@ -32,7 +32,7 @@ p{
 
 hr {
   border: none;
-  height: .5px;
+  height: 1px;
   width: 100%;
   background-color: rgba(230, 230, 230, 0.672);
 }
@@ -45,6 +45,7 @@ button{
   background: linear-gradient(to bottom,var(--button-color-a),var(--button-color-b));
   color: white;
   cursor: pointer;
+  font-family: 'Inter';
 }
 
 button:hover{
