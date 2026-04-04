@@ -96,6 +96,11 @@
 #section2 .options{
   display: inline-flex;
   align-items: stretch;
+
+  border: solid .07em rgb(223, 223, 223);
+  border-radius: .7em;
+  overflow: hidden; 
+  background: #fff; 
 }
 
 #options-container{
@@ -108,11 +113,24 @@
 #section2 .options select{
     font-size: .9em;
     font-weight: 400;
-    border-top: solid .07em rgb(223, 223, 223);
-    border-bottom: solid .07em rgb(223, 223, 223);
-    border-left: none;
-    border-right: none;
+    background-color: #fff;
+    color: black;
+    border: 0;
+    outline: none;
     padding: .5em .25em;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+#section2 .options > div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: .6em;
+  padding-right: .5em;
 }
 
 #section2 .options .step{
@@ -120,17 +138,19 @@
   background: none;
   color: black;
   background-color: rgb(243, 243, 243);
-  border: solid .07em rgb(223, 223, 223);
   font-weight: 500;
   font-size: 1.2em;
+  border: none;
 }
 
 #section2 .options .step.plus{
-  border-radius: 0 .6em .6em 0;
+  border-radius: 0;
+  border-left: solid .07em rgb(223, 223, 223);
 }
 
 #section2 .options .step.minus{
-  border-radius: .6em 0 0 .6em;
+  border-radius: 0;
+  border-right: solid .07em rgb(223, 223, 223);
 }
 
 #section2 .options .step.plus:hover{
@@ -197,7 +217,12 @@
 }
 
 #section3 .container{
-    padding: 2em 5em;
+  background-color: white;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  border-radius: .8em;
+
+  padding: 2em; 
+  margin: 2em 5em; 
 }
 
 #section3 .title{
@@ -229,10 +254,10 @@
 }
 
 #section3 .fotter{
-    background-color: white;
+    background-color: rgb(247, 247, 247);
+    border: solid .1em rgb(244, 244, 244);
     padding: 1em 1em;
     font-size: .95em;
-    box-shadow: 0 0 .8em rgba(0, 0, 0, 0.05);
     border-radius: .5em;
 }
 
@@ -398,7 +423,7 @@
   }
 
   #section3 .container{
-      padding: 2em 2em;
+      margin: 2em 2em;
   }
 
   #section4 .container{
@@ -418,11 +443,8 @@
   }  
 
   #section3 .container{
-      padding: 2em 2em;
-  }
-
-  #section4 .container{
-      padding: 2em 2em;
+      margin: 1em 1em;
+      padding: 1em;
   }
 }
 

@@ -10,6 +10,7 @@
 
 html {
   font-size: 100%; /* = 16px */
+  touch-action: manipulation;
 }
 
 body{
@@ -19,6 +20,8 @@ body{
   font-size: 1rem;
   font-weight: 400;
   background-color: white;
+
+  touch-action: manipulation;
 }
 
 a{
@@ -50,6 +53,7 @@ button{
 
 button:hover{
   background: linear-gradient(to bottom,var(--button-color-a-hover),var(--button-color-b-hover));
+  color: rgba(255, 255, 255, 0.918);
 }
 
 /* inter-100 - latin */

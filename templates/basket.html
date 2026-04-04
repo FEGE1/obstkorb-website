@@ -1,0 +1,199 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static "css/basket.css" %}">
+{% endblock extra_css %}
+
+{% block BodyBlock %}
+
+<div class="main-container">
+
+    <div class="title">
+        <p>Dein Warenkorb</p>
+        <div></div>
+    </div>
+    
+    <div id="main-grid">
+        <section id="sc1">
+            <div class="container">
+                <div class="item-list">
+                    <div class="item">
+                        <div class="left">
+                            <img src="{% static "images/item1.png" %}" alt="">
+                            <div>
+                                <p class="title">Fructkorb Klassik</p>
+                                <div id="options-container">
+                                    <div class="options">
+                                        <button type="button" class="step minus" >−</button>
+                                        <p>1 kg</p>
+                                        <button type="button" class="step plus">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <p class="price">24.99 €</p>
+                            <div class="delete">
+                                <i class="fa-regular fa-trash-can"></i>
+                                <p>Entfernen</p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="item">
+                        <div class="left">
+                            <img src="{% static "images/item1.png" %}" alt="">
+                            <div>
+                                <p class="title">Fructkorb Klassik</p>
+                                <div id="options-container">
+                                    <div class="options">
+                                        <button type="button" class="step minus" >−</button>
+                                        <p>1 kg</p>
+                                        <button type="button" class="step plus">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <p class="price">24.99 €</p>
+                            <div class="delete">
+                                <i class="fa-regular fa-trash-can"></i>
+                                <p>Entfernen</p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="item">
+                        <div class="left">
+                            <img src="{% static "images/item1.png" %}" alt="">
+                            <div>
+                                <p class="title">Fructkorb Klassik</p>
+                                <div id="options-container">
+                                    <div class="options">
+                                        <button type="button" class="step minus" >−</button>
+                                        <p>1 kg</p>
+                                        <button type="button" class="step plus">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <p class="price">24.99 €</p>
+                            <div class="delete">
+                                <i class="fa-regular fa-trash-can"></i>
+                                <p>Entfernen</p>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="item">
+                        <div class="left">
+                            <img src="{% static "images/item1.png" %}" alt="">
+                            <div>
+                                <p class="title">Fructkorb Klassik</p>
+                                <div id="options-container">
+                                    <div class="options">
+                                        <button type="button" class="step minus" >−</button>
+                                        <p>1 kg</p>
+                                        <button type="button" class="step plus">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <p class="price">24.99 €</p>
+                            <div class="delete">
+                                <i class="fa-regular fa-trash-can"></i>
+                                <p>Entfernen</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="total-price">
+                    <p>Gesamtsumme</p>
+                    <p>78.97 €</p>
+                </div>
+                <div class="bottom">
+                    <div class="item">
+                        <div class="icon"><i class="hgi hgi-stroke hgi-delivery-truck-02"></i></div>
+                        <div>
+                            <p>Friche Lieferung</p>
+                            <p>Ihre Bestellung wird innerhalb von 1–2 Werktagen geliefert.</p>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="icon"><i class="hgi hgi-stroke hgi-natural-food"></i></div>
+                        <div>
+                            <p>Frische Qualität</p>
+                            <p>Direkt vom Erzeuger</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section id="sc2">
+            <div class="container">
+                <p class="title">Bestellinformationen</p>
+                <form class="form-grid">
+    
+                    <div class="form-item name">
+                    <label>Name <span class="required">*</span></label>
+                    <input type="text" placeholder="Ihr vollständiger Name">
+                    </div>
+    
+                    <div class="form-item email">
+                    <label>E-Mail <span class="required">*</span></label>
+                    <input type="email" placeholder="beispiel@email.de">
+                    </div>
+    
+                    <div class="form-item company">
+                    <label>Firma (optional)</label>
+                    <input type="text" placeholder="Unternehmen">
+                    </div>
+    
+                    <div class="form-item people">
+                    <label>Empfängername (optional)</label>
+                    <input type="text" placeholder="Anzaki Personen">
+                    </div>
+    
+                    <div class="form-item address">
+                    <label>Adresse <span class="required">*</span></label>
+                    <input type="text" placeholder="Straße und Hausnummer">
+                    </div>
+    
+                    <div class="form-item city">
+                    <label>Stadt <span class="required">*</span></label>
+                    <select name="city">
+                        <option value="Hamburg" selected>Hamburg</option>
+                    </select>
+                    </div>
+    
+                    <div class="form-item phone">
+                    <label>Telefon <span class="required">*</span></label>
+                    <input type="text" placeholder="+49 30 12345678">
+                    </div>
+    
+                    <div class="form-item notes">
+                    <label>Zusätzliche Hinweise</label>
+                    <textarea placeholder="Nachricht (z.B. Sonderwünsche/Unverträglichkeiten)"></textarea>
+                    </div>
+
+                    <div class="check">
+                        <input type="checkbox" name="" id="">
+                        <p>Ich stimme zu, dass meine Informationen zur Bearbeitung meiner Anfrage verwendet werden. Ihre Daten werden nicht für andere Zwecke genuzzt oder an Dritte weitergegeben. Sie konnen Ihre Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen. Weitere Informationen dacu und zun dat <span style="color:rgb(217, 164, 29);">Datenschutzerkiärung</span> dieser Website.</p>
+                    </div>
+                    
+                    <div class="button"><button>Bestellung erstellen</button></div>
+                </form>
+            </div>
+        </section>
+    </div>
+</div>
+
+{% endblock BodyBlock %}
+
+{% block extra_script %}
+    <script src="{% static "js/basket.js" %}" defer></script>
+{% endblock extra_script %}

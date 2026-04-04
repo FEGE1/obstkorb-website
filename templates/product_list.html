@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% load static %}
+{% load custom_filters %}
 {% block extra_css %}
     <link rel="stylesheet" href="{% static "css/product_list.css" %}">
 {% endblock extra_css %}
@@ -19,8 +20,10 @@
         </div>
 
         <div class="search-bar">
-            <input type="text" placeholder="Produkte durchsuchen...">
-            <i class="fa-solid fa-magnifying-glass"></i>
+            <div>
+                <input type="text" placeholder="Produkte durchsuchen...">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
         </div>
         
         <div class="category">
@@ -28,19 +31,19 @@
                 <p>Alle</p>
             </div>
             <div class="item">
-                <p>🧺</p>
+                <img src="{% static "images/category1.png" %}" alt="">
                 <p>Obstkorb</p>
             </div>
             <div class="item">
-                <p>🧺</p>
+                <img src="{% static "images/category2.png" %}" alt="">
                 <p>Obst-Gemüsekorb</p>
             </div>
             <div class="item">
-                <p>🍎</p>
+                <img src="{% static "images/category3.png" %}" alt="">
                 <p>Obst</p>
             </div>
             <div class="item">
-                <p>🥦</p>
+                <img src="{% static "images/category4.png" %}" alt="">
                 <p>Gemüse</p>
             </div>
         </div>
@@ -61,6 +64,43 @@
         </div>
 
         <div class="content">
+            {% for product in products %}
+            <a href="{% url "product:product_detail2" product.id %}">
+                <div class="item">
+                    <div class="left">
+                        <img src="{{product.image_1.url}}" alt="">
+                        <div>
+                            <p>{{product.title}}</p>
+                            {% if product.category == "fruit" or product.category == "vegetable" %}
+                            <p>Preis pro 1 kg</p>
+                            {% else %}
+                            <p>Getuit mit {% for item in product.items|slice:":5" %}{% if not forloop.first %}{% if forloop.last %} & {% else %}, {% endif %}{% endif %}{{item}}{% endfor %}</p>
+                            {% endif %}
+                            <hr>
+                            <div class="tag">
+                                {% for item in product.vitamins|slice:":3" %}
+                                <p>{{item}}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <p><span style="color:grey;font-size:.7em;">Ab</span> {{product.price|price_format}} €</p>
+                        <div>
+                            <button onclick="event.preventDefault(); event.stopPropagation();">
+                                <div>
+                                    <i class="fa-solid fa-cart-plus"></i>
+                                    <p>In den Warenkorb</p>
+                                </div>
+                            </button>
+                            <button>Details ansehen</button>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+
+
             <a href="{% url "product:product_detail" %}">
                 <div class="item">
                     <div class="left">
@@ -85,7 +125,7 @@
                                     <p>In den Warenkorb</p>
                                 </div>
                             </button>
-                            <button onclick="event.preventDefault(); event.stopPropagation();">Details ansehen</button>
+                            <button>Details ansehen</button>
                         </div>
                     </div>
                 </div>
