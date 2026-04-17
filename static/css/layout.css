@@ -345,14 +345,14 @@
   font-weight: 500;
 }
 
-#options-container{
+.options-container{
   display: flex;
   align-items: center;
   gap: .8em;
   font-size: .9rem;
 }
 
-#options-container .options{
+.options-container .options{
   display: inline-flex;
   height: 1.8em;
   border-radius: 5px;
@@ -361,7 +361,7 @@
   background: #fff; 
 }
 
-#options-container .options .step{
+.options-container .options .step{
   padding: 0 .5em;        
   background: none;
   color: black;
@@ -371,29 +371,34 @@
   border: none;
 }
 
-#options-container .options p{
+.options-container .options p{
   display: flex;
   align-items: center;
   padding: 0 .8em;
   font-size: .8em;
 }
 
-#options-container .options .step.plus{
+.options-container .options .step.plus{
   border-radius: 0;
   border-left: solid .1em rgb(236, 236, 236);
 }
 
-#options-container .options .step.minus{
+.options-container .options .step.minus{
   border-radius: 0;
   border-right: solid .1em rgb(236, 236, 236);
 }
 
-#options-container .options .step.plus:hover{
+.options-container .options .step.plus:hover{
     background: rgb(240, 240, 240);
 }
 
-#options-container .options .step.minus:hover{
+.options-container .options .step.minus:hover{
     background: rgb(240, 240, 240);
+}
+
+.cart-decrease-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 #basket .bottom,.delete{

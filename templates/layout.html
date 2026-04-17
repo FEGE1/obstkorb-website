@@ -25,7 +25,7 @@
             <div class="shopping-cart">
                 <div class="icon">
                     <i class="fa-solid fa-cart-shopping"></i>
-                    <span class="cart-badge">3</span>
+                    <span class="cart-badge" id="navbar-cart-badge">0</span>
                 </div>
                 <p>Warenkorb</p>
             </div>
@@ -42,83 +42,19 @@
             <div class="header">
                 <div>
                     <p class="title">DEIN WARENKORB</p>
-                    <div class="count">3</div>
+                    <div class="count" id="basket-count">0</div>
                 </div>
                 <i class="fa-regular fa-circle-xmark"></i>
             </div>
             <hr>
-            <div class="item-list">
-                <div class="item">
-                    <a href="">
-                        <img src="{% static "images/item1.png" %}" alt="">
-                    </a>
-                    <div class="right">
-                        <a href="">
-                            <div class="title">Fruchtkorb Klassik</div>
-                        </a>
-                        <div id="options-container">
-                            <div class="options">
-                                <button type="button" class="step minus" >−</button>
-                                <p>1 kg</p>
-                                <button type="button" class="step plus">+</button>
-                            </div>
-                        </div>
-                        <div class="bottom">
-                            <p class="price">24,99 €</p>
-                            <div class="delete">
-                                <i class="fa-regular fa-trash-can"></i>
-                                <p>Entfernen</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="{% static "images/item1.png" %}" alt="">
-                    <div class="right">
-                        <div class="title">Exotischer Obstkorb</div>
-                        <div id="options-container">
-                            <div class="options">
-                                <button type="button" class="step minus">−</button>
-                                <p>1 kg</p>
-                                <button type="button" class="step plus">+</button>
-                            </div>
-                        </div>
-                        <div class="bottom">
-                            <p class="price">26,99 €</p>
-                            <div class="delete">
-                                <i class="fa-regular fa-trash-can"></i>
-                                <p>Entfernen</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="item">
-                    <img src="{% static "images/item1.png" %}" alt="">
-                    <div class="right">
-                        <div class="title">Bio Fruchtkorb</div>
-                        <div id="options-container">
-                            <div class="options">
-                                <button type="button" class="step minus" >−</button>
-                                <p>1 kg</p>
-                                <button type="button" class="step plus">+</button>
-                            </div>
-                        </div>
-                        <div class="bottom">
-                            <p class="price">26,99 €</p>
-                            <div class="delete">
-                                <i class="fa-regular fa-trash-can"></i>
-                                <p>Entfernen</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="item-list" id="basket-item-list">
             </div>
             
             <div class="bottom">
                 <hr>
                 <div>
                     <p>Gesamtsumme</p>
-                    <p>94,92 €</p>
+                    <p id="basket-grand-total">0,00 €</p>
                 </div>
                 <a href="{% url "basket" %}">
                     <button>Warenkorb Ansehen</button>
@@ -276,7 +212,7 @@
         </div>
     </div>
     <script src="https://kit.fontawesome.com/44f61e66cc.js" crossorigin="anonymous"></script>
-    {% block extra_script %}{% endblock extra_script %}
     <script src="{% static "js/layout.js" %}"></script>
+    {% block extra_script %}{% endblock extra_script %}
 </body>
 </html>

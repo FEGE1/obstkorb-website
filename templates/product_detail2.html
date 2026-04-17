@@ -43,11 +43,11 @@
                         <option value="3" data-person="für ca. 4–6 Personen">3kg</option>
                         <option value="4" data-person="für ca. 6–8 Personen">4kg</option>
                         <option value="5" data-person="für ca. 8–10 Personen">5kg</option>
-                        <option value="1" data-person="für ca. 10–12 Personen">6kg</option>
-                        <option value="2" data-person="für ca. 12–14 Personen">7kg</option>
-                        <option value="3" data-person="für ca. 14–16 Personen">8kg</option>
-                        <option value="4" data-person="für ca. 16–18 Personen">9kg</option>
-                        <option value="5" data-person="für ca. 18–20 Personen">10kg</option>
+                        <option value="6" data-person="für ca. 10–12 Personen">6kg</option>
+                        <option value="7" data-person="für ca. 12–14 Personen">7kg</option>
+                        <option value="8" data-person="für ca. 14–16 Personen">8kg</option>
+                        <option value="9" data-person="für ca. 16–18 Personen">9kg</option>
+                        <option value="10" data-person="für ca. 18–20 Personen">10kg</option>
                     </select>
                     <div><i class="fa-solid fa-chevron-down"></i></div>
                     <button type="button" class="step plus" aria-label="Artır">+</button>
@@ -60,7 +60,7 @@
             </div>
 
             <div class="buttons">
-                <button>
+                <button class="add-to-cart-btn" data-product-id="{{product.id}}">
                     <div>
                         <i class="fa-solid fa-cart-plus"></i>
                         <p>In den Warenkorb</p>
@@ -160,5 +160,5 @@
 </section>
 {% endblock BodyBlock %}
 {% block extra_script %}
-    <script src="{% static "js/product_detail.js" %}" defer></script>
+    <script src="{% static "js/product_detail2.js" %}" defer></script>
 {% endblock extra_script %}

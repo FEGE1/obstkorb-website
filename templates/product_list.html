@@ -21,28 +21,28 @@
 
         <div class="search-bar">
             <div>
-                <input type="text" placeholder="Produkte durchsuchen...">
+                <input type="text" id="product-search" placeholder="Produkte durchsuchen...">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </div>
         </div>
         
         <div class="category">
-            <div class="item">
+            <div class="item active" data-category="all">
                 <p>Alle</p>
             </div>
-            <div class="item">
+            <div class="item" data-category="fruit_basket">
                 <img src="{% static "images/category1.png" %}" alt="">
                 <p>Obstkorb</p>
             </div>
-            <div class="item">
+            <div class="item" data-category="mix_basket">
                 <img src="{% static "images/category2.png" %}" alt="">
                 <p>Obst-Gemüsekorb</p>
             </div>
-            <div class="item">
+            <div class="item" data-category="fruit">
                 <img src="{% static "images/category3.png" %}" alt="">
                 <p>Obst</p>
             </div>
-            <div class="item">
+            <div class="item" data-category="vegetable">
                 <img src="{% static "images/category4.png" %}" alt="">
                 <p>Gemüse</p>
             </div>
@@ -52,159 +52,19 @@
 <section id="sc3">
     <div class="container">
         <div class="sort">
-            <select name="sort" id="sort">
-                <option value="" disabled selected>Sortieren nach...</option>
-                <option value="price_desc">Preis: Hoch nach Niedrig</option>
-                <option value="price_asc">Preis: Niedrig nach Hoch</option>
-                <option value="best_selling">Meistverkauft</option>
+            <select name="sort" id="sort-filter">
+                <option value="bestseller" selected>Bestseller</option>
+                <option value="price_asc">Preis aufsteigend</option>
+                <option value="price_desc">Preis absteigend</option>
+                <option value="title_asc">A-Z</option>
             </select>
             <div class="icon">
-                <i class="fa-solid fa-arrow-down-short-wide"></i>
+                <i class="hgi hgi-stroke hgi-sort-by-down-02"></i>
             </div>
         </div>
 
-        <div class="content">
-            {% for product in products %}
-            <a href="{% url "product:product_detail2" product.id %}">
-                <div class="item">
-                    <div class="left">
-                        <img src="{{product.image_1.url}}" alt="">
-                        <div>
-                            <p>{{product.title}}</p>
-                            {% if product.category == "fruit" or product.category == "vegetable" %}
-                            <p>Preis pro 1 kg</p>
-                            {% else %}
-                            <p>Getuit mit {% for item in product.items|slice:":5" %}{% if not forloop.first %}{% if forloop.last %} & {% else %}, {% endif %}{% endif %}{{item}}{% endfor %}</p>
-                            {% endif %}
-                            <hr>
-                            <div class="tag">
-                                {% for item in product.vitamins|slice:":3" %}
-                                <p>{{item}}</p>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="right">
-                        <p><span style="color:grey;font-size:.7em;">Ab</span> {{product.price|price_format}} €</p>
-                        <div>
-                            <button onclick="event.preventDefault(); event.stopPropagation();">
-                                <div>
-                                    <i class="fa-solid fa-cart-plus"></i>
-                                    <p>In den Warenkorb</p>
-                                </div>
-                            </button>
-                            <button>Details ansehen</button>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            {% endfor %}
+        <div class="content" id="product-list">
 
-
-            <a href="{% url "product:product_detail" %}">
-                <div class="item">
-                    <div class="left">
-                        <img src="{% static "images/item1.png" %}" alt="">
-                        <div>
-                            <p>Fruchtkorb Klassik</p>
-                            <p>Getuit mit Apfein, Trauben, Banen, Kiwis & Orangen</p>
-                            <hr>
-                            <div class="tag">
-                                <p>C Vitamine</p>
-                                <p>A Vitamine</p>
-                                <p>B2 Vitamine</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="right">
-                        <p><span style="color:grey;font-size:.7em;">Ab</span> 24,99 €</p>
-                        <div>
-                            <button onclick="event.preventDefault(); event.stopPropagation();">
-                                <div>
-                                    <i class="fa-solid fa-cart-plus"></i>
-                                    <p>In den Warenkorb</p>
-                                </div>
-                            </button>
-                            <button>Details ansehen</button>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <div class="item">
-                <div class="left">
-                    <img src="{% static "images/item2.png" %}" alt="">
-                    <div>
-                        <p>Bio Frunchtkorb</p>
-                        <p>Getuit mit Apfein, Trauben, Banen, Kiwis & Orangen</p>
-                        <hr>
-                        <div class="tag">
-                            <p>C Vitamine</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="right">
-                    <p><span style="color:grey;font-size:.7em;">Ab</span> 24,99 €</p>
-                    <div>
-                        <button>
-                            <div>
-                                <i class="fa-solid fa-cart-plus"></i>
-                                <p>In den Warenkorb</p>
-                            </div>
-                        </button>
-                        <button>Details ansehen</button>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="left">
-                    <img src="{% static "images/item3.png" %}" alt="">
-                    <div>
-                        <p>Exotischer Obstkorb</p>
-                        <p>Getuit mit Apfein, Trauben, Banen, Kiwis & Orangen</p>
-                        <hr>
-                        <div class="tag">
-                            <p>C Vitamine</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="right">
-                    <p><span style="color:grey;font-size:.7em;">Ab</span> 24,99 €</p>
-                    <div>
-                        <button>
-                            <div>
-                                <i class="fa-solid fa-cart-plus"></i>
-                                <p>In den Warenkorb</p>
-                            </div>
-                        </button>
-                        <button>Details ansehen</button>
-                    </div>
-                </div>
-            </div>
-            <div class="item">
-                <div class="left">
-                    <img src="{% static "images/item4.png" %}" alt="">
-                    <div>
-                        <p>Apfel</p>
-                        <p>Getuit mit Apfein, Trauben, Banen, Kiwis & Orangen</p>
-                        <hr>
-                        <div class="tag">
-                            <p>C Vitamine</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="right">
-                    <p><span style="color:grey;font-size:.7em;">Ab</span> 24,99 €</p>
-                    <div>
-                        <button>
-                            <div>
-                                <i class="fa-solid fa-cart-plus"></i>
-                                <p>In den Warenkorb</p>
-                            </div>
-                        </button>
-                        <button>Details ansehen</button>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </section>

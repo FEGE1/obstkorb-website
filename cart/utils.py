@@ -37,6 +37,7 @@ def build_cart_response(request):
         total_items += quantity
 
     grand_total = subtotal
+    unique_items = len(items)
 
     return {
         "success": True,
@@ -45,5 +46,6 @@ def build_cart_response(request):
             "subtotal": float(subtotal),
             "grand_total": float(grand_total),
             "total_items": total_items,
+            "unique_items": unique_items,
         }
     }

@@ -16,103 +16,13 @@
     <div id="main-grid">
         <section id="sc1">
             <div class="container">
-                <div class="item-list">
-                    <div class="item">
-                        <div class="left">
-                            <img src="{% static "images/item1.png" %}" alt="">
-                            <div>
-                                <p class="title">Fructkorb Klassik</p>
-                                <div id="options-container">
-                                    <div class="options">
-                                        <button type="button" class="step minus" >−</button>
-                                        <p>1 kg</p>
-                                        <button type="button" class="step plus">+</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="right">
-                            <p class="price">24.99 €</p>
-                            <div class="delete">
-                                <i class="fa-regular fa-trash-can"></i>
-                                <p>Entfernen</p>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="item">
-                        <div class="left">
-                            <img src="{% static "images/item1.png" %}" alt="">
-                            <div>
-                                <p class="title">Fructkorb Klassik</p>
-                                <div id="options-container">
-                                    <div class="options">
-                                        <button type="button" class="step minus" >−</button>
-                                        <p>1 kg</p>
-                                        <button type="button" class="step plus">+</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="right">
-                            <p class="price">24.99 €</p>
-                            <div class="delete">
-                                <i class="fa-regular fa-trash-can"></i>
-                                <p>Entfernen</p>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="item">
-                        <div class="left">
-                            <img src="{% static "images/item1.png" %}" alt="">
-                            <div>
-                                <p class="title">Fructkorb Klassik</p>
-                                <div id="options-container">
-                                    <div class="options">
-                                        <button type="button" class="step minus" >−</button>
-                                        <p>1 kg</p>
-                                        <button type="button" class="step plus">+</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="right">
-                            <p class="price">24.99 €</p>
-                            <div class="delete">
-                                <i class="fa-regular fa-trash-can"></i>
-                                <p>Entfernen</p>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="item">
-                        <div class="left">
-                            <img src="{% static "images/item1.png" %}" alt="">
-                            <div>
-                                <p class="title">Fructkorb Klassik</p>
-                                <div id="options-container">
-                                    <div class="options">
-                                        <button type="button" class="step minus" >−</button>
-                                        <p>1 kg</p>
-                                        <button type="button" class="step plus">+</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="right">
-                            <p class="price">24.99 €</p>
-                            <div class="delete">
-                                <i class="fa-regular fa-trash-can"></i>
-                                <p>Entfernen</p>
-                            </div>
-                        </div>
-                    </div>
+                <div id="item-count"></div>
+                <div class="item-list" id="main-basket-item-list">
                 </div>
 
                 <div id="total-price">
                     <p>Gesamtsumme</p>
-                    <p>78.97 €</p>
+                    <p id="price-grand-total">0 €</p>
                 </div>
                 <div class="bottom">
                     <div class="item">
@@ -136,56 +46,116 @@
         <section id="sc2">
             <div class="container">
                 <p class="title">Bestellinformationen</p>
-                <form class="form-grid">
-    
+                <form method="POST" class="form-grid">
+                    {% csrf_token %}
+
+                    {% if form.non_field_errors %}
+                        <div class="form-errors">
+                            {% for error in form.non_field_errors %}
+                                <p class="field-error">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
                     <div class="form-item name">
-                    <label>Name <span class="required">*</span></label>
-                    <input type="text" placeholder="Ihr vollständiger Name">
+                        <label for="{{ form.name.id_for_label }}">
+                            Name <span class="required">*</span>
+                        </label>
+                        {{ form.name }}
+                        {% for error in form.name.errors %}
+                            <p class="field-error">{{ error }}</p>
+                        {% endfor %}
                     </div>
-    
+
                     <div class="form-item email">
-                    <label>E-Mail <span class="required">*</span></label>
-                    <input type="email" placeholder="beispiel@email.de">
+                        <label for="{{ form.email.id_for_label }}">
+                            E-Mail <span class="required">*</span>
+                        </label>
+                        {{ form.email }}
+                        {% for error in form.email.errors %}
+                            <p class="field-error">{{ error }}</p>
+                        {% endfor %}
                     </div>
-    
+
                     <div class="form-item company">
-                    <label>Firma (optional)</label>
-                    <input type="text" placeholder="Unternehmen">
+                        <label for="{{ form.company.id_for_label }}">
+                            Firma (optional)
+                        </label>
+                        {{ form.company }}
+                        {% for error in form.company.errors %}
+                            <p class="field-error">{{ error }}</p>
+                        {% endfor %}
                     </div>
-    
+
                     <div class="form-item people">
-                    <label>Empfängername (optional)</label>
-                    <input type="text" placeholder="Anzaki Personen">
+                        <label for="{{ form.recipient_name.id_for_label }}">
+                            Empfängername (optional)
+                        </label>
+                        {{ form.recipient_name }}
+                        {% for error in form.recipient_name.errors %}
+                            <p class="field-error">{{ error }}</p>
+                        {% endfor %}
                     </div>
-    
+
                     <div class="form-item address">
-                    <label>Adresse <span class="required">*</span></label>
-                    <input type="text" placeholder="Straße und Hausnummer">
+                        <label for="{{ form.address.id_for_label }}">
+                            Adresse <span class="required">*</span>
+                        </label>
+                        {{ form.address }}
+                        {% for error in form.address.errors %}
+                            <p class="field-error">{{ error }}</p>
+                        {% endfor %}
                     </div>
-    
+
                     <div class="form-item city">
-                    <label>Stadt <span class="required">*</span></label>
-                    <select name="city">
-                        <option value="Hamburg" selected>Hamburg</option>
-                    </select>
+                        <label for="{{ form.city.id_for_label }}">
+                            Stadt <span class="required">*</span>
+                        </label>
+                        {{ form.city }}
+                        {% for error in form.city.errors %}
+                            <p class="field-error">{{ error }}</p>
+                        {% endfor %}
                     </div>
-    
+
                     <div class="form-item phone">
-                    <label>Telefon <span class="required">*</span></label>
-                    <input type="text" placeholder="+49 30 12345678">
+                        <label for="{{ form.phone.id_for_label }}">
+                            Telefon <span class="required">*</span>
+                        </label>
+                        {{ form.phone }}
+                        {% for error in form.phone.errors %}
+                            <p class="field-error">{{ error }}</p>
+                        {% endfor %}
                     </div>
-    
+
                     <div class="form-item notes">
-                    <label>Zusätzliche Hinweise</label>
-                    <textarea placeholder="Nachricht (z.B. Sonderwünsche/Unverträglichkeiten)"></textarea>
+                        <label for="{{ form.note.id_for_label }}">
+                            Zusätzliche Hinweise
+                        </label>
+                        {{ form.note }}
+                        {% for error in form.note.errors %}
+                            <p class="field-error">{{ error }}</p>
+                        {% endfor %}
                     </div>
 
                     <div class="check">
-                        <input type="checkbox" name="" id="">
-                        <p>Ich stimme zu, dass meine Informationen zur Bearbeitung meiner Anfrage verwendet werden. Ihre Daten werden nicht für andere Zwecke genuzzt oder an Dritte weitergegeben. Sie konnen Ihre Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen. Weitere Informationen dacu und zun dat <span style="color:rgb(217, 164, 29);">Datenschutzerkiärung</span> dieser Website.</p>
+                        {{ form.privacy_approved }}
+                        <p>
+                            Ich stimme zu, dass meine Informationen zur Bearbeitung meiner Anfrage verwendet werden.
+                            Ihre Daten werden nicht für andere Zwecke genutzt oder an Dritte weitergegeben.
+                            Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen.
+                            Weitere Informationen dazu und zum Datenschutz in der
+                            <span style="color:rgb(217, 164, 29);">Datenschutzerklärung</span>
+                            dieser Website.
+                        </p>
                     </div>
-                    
-                    <div class="button"><button>Bestellung erstellen</button></div>
+
+                    {% for error in form.privacy_approved.errors %}
+                        <p class="field-error">{{ error }}</p>
+                    {% endfor %}
+
+                    <div class="button">
+                        <button type="submit">Bestellung erstellen</button>
+                    </div>
                 </form>
             </div>
         </section>

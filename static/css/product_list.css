@@ -138,8 +138,7 @@
 }
 
 #sc3 .sort i{
-    color: rgb(112, 112, 112);
-    font-size: .8em;
+    font-size: 1em;
     padding: .4em;
     cursor: pointer;
 }
@@ -149,6 +148,15 @@
     flex-direction: column;
     padding-top: .2em;
     gap: .5em;
+}
+
+#sc3 .empty-products{
+    display: flex;
+    justify-content: center;
+    padding: 2em 0;
+    color: grey;
+    font-size: .9em;
+    font-weight: 400;
 }
 
 #sc3 .item{
@@ -334,6 +342,9 @@
     }
     #sc3 .item button:last-of-type{
         display: none;
+    }
+    #sc3 .item .left > div > p:first-of-type{
+        text-align: center;
     }
     #sc3 .item .left > div > p:last-of-type{
         text-align: center;
