@@ -86,6 +86,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const csrftoken = getCookie("csrftoken");
 
+        console.log("csrftoken:", csrftoken);
+        console.log("document.cookie:", document.cookie);
+
+        if (!csrftoken) {
+            alert("CSRF token bulunamadı.");
+            return;
+        }
+
         try {
             const response = await fetch("/cart/add/", {
                 method: "POST",
