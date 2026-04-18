@@ -110,7 +110,7 @@ document.addEventListener("DOMContentLoaded", function () {
             document.dispatchEvent(new CustomEvent("cart:updated"));
         } catch (error) {
             console.error("Cart add error:", error);
-            alert("Ein Fehler ist aufgetreten.");
+            alert(error);
         } finally {
             addToCartBtn.disabled = false;
             addToCartBtn.classList.remove("loading");
