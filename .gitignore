@@ -1,5 +1,58 @@
-.env
+# Python
 __pycache__/
-*.pyc
-db.sqlite3
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv/
+
+# Environment variables
+.env
 .env.*
+*.env
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Static & Media (production'da genelde serverda tutulur)
+staticfiles/
+media/
+
+# Migrations (opsiyonel - genelde tutulur, silme!)
+# */migrations/
+# !*/migrations/__init__.py
+
+# OS
+.DS_Store
+Thumbs.db
+
+# VS Code / IDE
+.vscode/
+.idea/
+
+# Node (eğer frontend tool kullanırsan)
+node_modules/
+
+# Gunicorn / logs
+*.log
+
+# Nginx temp / socket (opsiyonel)
+*.sock
+
+# Coverage / test
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Build / dist
+build/
+dist/
+
+# Mac temp
+*.swp
