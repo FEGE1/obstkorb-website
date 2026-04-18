@@ -12,6 +12,9 @@
     {% block extra_css %}{% endblock extra_css %}
 </head>
 <body>
+    <form style="display:none;">
+        {% csrf_token %}
+    </form>
     <nav id="navbar">
         <a style="height: 70%;align-content:center;" href="{% url "index" %}"><img src="{% static "images/logo2.png" %}" alt="logo didn't show"></a>
         <div id="navbar-right">
