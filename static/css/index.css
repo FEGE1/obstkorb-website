@@ -88,8 +88,7 @@
 #section3 .container{
   display: grid;
   gap: 1rem;
-  grid-template-columns: repeat(4, 1fr);
-  align-items: stretch;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   padding: 1rem 10rem;
 }
 
@@ -158,6 +157,13 @@
   font-size: 1.2em;
 }
 
+#section3 .item p:first-of-type{
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 #section3 .item p:last-of-type{
   font-size: 1.1em;
 }
@@ -168,6 +174,21 @@
   margin-top: .4em;
 }
 /*section3-end*/
+
+.view-all-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.view-all-btn button{
+  font-size: .8rem;
+  gap: .5em;
+}
+
+.view-all-btn i{
+  font-size: .8em;
+}
 
 /*section4-start*/
 #section4{
@@ -246,7 +267,7 @@
 
   #section3 .container{
     padding: 1rem 5rem;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -261,7 +282,7 @@
   
   #section3 .container{
     padding: 1rem 2rem;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   #section4 .container{
@@ -280,7 +301,7 @@
   }
 
   #section3 .container{
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   #section4 .grid{

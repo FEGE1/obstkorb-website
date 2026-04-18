@@ -1,5 +1,6 @@
 from decimal import Decimal
 from product.models import Product
+from django.urls import reverse
 
 
 def build_cart_response(request):
@@ -31,6 +32,7 @@ def build_cart_response(request):
             "unit_price": float(unit_price),
             "line_total": float(line_total),
             "image_url": product.image_1.url if product.image_1 else "",
+            "detail_url": reverse("product:product_detail2", args=[product.id]),
         })
 
         subtotal += line_total

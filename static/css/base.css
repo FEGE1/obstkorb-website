@@ -41,18 +41,23 @@ hr {
 }
 
 button{
+  display: flex;
+  justify-content: center;
+  gap: .5em;
+  align-items: center;
   font-size: 2em;
   padding: .5em 1.5em;
   border: none;
   border-radius: 3em;
-  background: linear-gradient(to bottom,var(--button-color-a),var(--button-color-b));
+  background-color: var(--button-color-a);
   color: white;
   cursor: pointer;
   font-family: 'Inter';
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.075);
 }
 
 button:hover{
-  background: linear-gradient(to bottom,var(--button-color-a-hover),var(--button-color-b-hover));
+  background: var(--button-color-b);
   color: rgba(255, 255, 255, 0.918);
 }
 

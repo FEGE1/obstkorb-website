@@ -44,21 +44,51 @@ def product_list_api(request):
         products = products.order_by("-sales_count")
 
     data = {
-    "products": [
-        {
-            "id": str(product.id),
-            "title": product.title,
-            "price": float(product.price),
-            "category": product.category,
-            "category_label": product.get_category_display(),
-            "tag": product.tag,
-            "items": product.items or [],
-            "vitamins": product.vitamins or [],
-            "image_url": product.image_1.url if product.image_1 else "",
-            "detail_url": reverse("product:product_detail2", args=[product.id]),
-        }
-        for product in products
-    ]
-}
+        "products": [
+            {
+                "id": str(product.id),
+                "title": product.title,
+                "price": float(product.price),
+                "category": product.category,
+                "category_label": product.get_category_display(),
+                "tag": product.tag,
+                "items": product.items or [],
+                "vitamins": product.vitamins or [],
+                "image_url": product.image_1.url if product.image_1 else "",
+                "detail_url": reverse("product:product_detail2", args=[product.id]),
+            }
+            for product in products
+        ]
+    }
+
+    return JsonResponse(data)
+
+@require_GET
+def product_list_index_api(request):
+    search = request.GET.get("search", "").strip()
+
+    products = Product.objects.all()
+
+    if search == "suggested":
+        products = products.filter(tag="suggested")[:4]
+    elif search == "bestseller":
+        products = products.order_by("-sales_count")[:4]
+    elif search == "new_added":
+        products = products.order_by("-created_at")[:4]
+    else:
+        products = products.filter(tag="suggested")[:4]
+
+
+    data = {
+        "products": [
+            {
+                "title": product.title,
+                "price": float(product.price),
+                "image_url": product.image_1.url if product.image_1 else "",
+                "detail_url": reverse("product:product_detail2", args=[product.id]),
+            }
+            for product in products
+        ]
+    }
 
     return JsonResponse(data)

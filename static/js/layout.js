@@ -140,11 +140,11 @@ function renderCart(data) {
     data.items.forEach(item => {
         const itemHTML = `
                 <div class="item" data-product-id="${item.product_id}">
-                    <a href="">
+                    <a href="${item.detail_url}">
                         <img src="${item.image_url}" alt="${item.name}">
                     </a>
                     <div class="right">
-                        <a href="">
+                        <a href="${item.detail_url}">
                             <div class="title">${item.name}</div>
                         </a>
                         <div class="options-container">

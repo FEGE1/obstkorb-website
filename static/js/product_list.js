@@ -8,10 +8,6 @@ let currentCategory = "all";
 let currentSearch = "";
 let currentSort = "default";
 
-function formatPrice(price) {
-    return String(price).replace(".", ",");
-}
-
 function buildItemsText(product) {
     if (product.category === "fruit" || product.category === "vegetable") {
         return "Preis pro 1 kg";
@@ -67,12 +63,11 @@ function renderProducts(products) {
                     </div>
                 </div>
                 <div class="right">
-                    <p><span style="color:grey;font-size:.7em;">Ab</span> ${formatPrice(product.price)} €</p>
+                    <p><span style="color:grey;font-size:.7em;">Ab</span> ${formatPrice(product.price)}</p>
                     <div>
                         <button 
                             class="add-to-cart-btn"
                             data-product-id="${product.id}"
-                            onclick="event.preventDefault(); event.stopPropagation();"
                         >
                             <div>
                                 <i class="fa-solid fa-cart-plus"></i>
@@ -131,7 +126,6 @@ async function fetchProducts() {
     }
 }
 
-// kategori seçimi + active class + fetch
 categories.forEach(cat => {
     cat.addEventListener("click", () => {
         categories.forEach(c => c.classList.remove("active"));
@@ -153,7 +147,6 @@ if (searchInput) {
     });
 }
 
-// sort filter
 if (sortFilter) {
     sortFilter.addEventListener("change", (e) => {
         currentSort = e.target.value;
@@ -161,7 +154,6 @@ if (sortFilter) {
     });
 }
 
-// sepete ekleme - event delegation
 document.addEventListener("click", async (e) => {
     const btn = e.target.closest(".add-to-cart-btn");
     if (!btn) return;
@@ -182,7 +174,8 @@ document.addEventListener("click", async (e) => {
             },
             credentials: "same-origin",
             body: JSON.stringify({
-                product_id: productId
+                product_id: productId,
+                quantity: 1
             })
         });
 
@@ -193,10 +186,7 @@ document.addEventListener("click", async (e) => {
             return;
         }
 
-        // burada senin mevcut cart render/open fonksiyonların varsa çağır
-        // örnek:
-        // renderCart(data);
-        // basket.style.display = "flex";
+        document.dispatchEvent(new CustomEvent("cart:updated"));
 
     } catch (error) {
         console.error("Cart add error:", error);
