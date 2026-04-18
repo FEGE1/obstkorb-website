@@ -84,12 +84,14 @@ document.addEventListener("DOMContentLoaded", function () {
         addToCartBtn.disabled = true;
         addToCartBtn.classList.add("loading");
 
+        const csrftoken = getCookie("csrftoken");
+
         try {
             const response = await fetch("/cart/add/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "X-CSRFToken": window.csrftoken
+                    "X-CSRFToken": csrftoken
                 },
                 credentials: "same-origin",
                 body: JSON.stringify({
