@@ -3,6 +3,7 @@ from .models import Product
 from django.views.decorators.http import require_GET, require_POST
 from django.http import JsonResponse
 from django.urls import reverse
+from django.views.decorators.csrf import ensure_csrf_cookie
 
 # Create your views here.
 def product_list(request):
@@ -10,9 +11,7 @@ def product_list(request):
 
     return render(request,'product_list.html',context={"page":2, "products": products})
 
-def product_detail(request):
-    return render(request,'product_detail.html')
-
+@ensure_csrf_cookie
 def product_detail2(request, pk):
     product = get_object_or_404(Product, id=pk)
     return render(request,'product_detail2.html',{"product":product})
