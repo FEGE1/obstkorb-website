@@ -47,6 +47,12 @@ function renderProducts(products) {
 }
 
 async function fetchProducts() {
+
+    if (!csrftoken) {
+        alert("CSRF error.");
+        return;
+    }
+
     try {
         if (productList) {
             productList.classList.add("loading");
@@ -60,7 +66,6 @@ async function fetchProducts() {
             method: "GET",
             headers: {
                 "X-Requested-With": "XMLHttpRequest",
-                "X-CSRFToken": window.csrftoken
             }
         });
 

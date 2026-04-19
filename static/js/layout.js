@@ -91,6 +91,13 @@ basket.addEventListener("click", function (e) {
 
 // Cart
 async function loadCart() {
+    const csrftoken = getCookie("csrftoken");
+
+    if (!csrftoken) {
+        alert("CSRF error.");
+        return;
+    }
+
     try {
         const response = await fetch("/cart/data/", {
             method: "GET",
@@ -197,6 +204,13 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 // Cart Remove
 async function removeFromCart(productId) {
+    const csrftoken = getCookie("csrftoken");
+
+    if (!csrftoken) {
+        alert("CSRF error.");
+        return;
+    }
+
     try {
         const response = await fetch("/cart/remove/", {
             method: "POST",
@@ -224,6 +238,13 @@ async function removeFromCart(productId) {
 }
 
 async function updateCartQuantity(productId, action) {
+    const csrftoken = getCookie("csrftoken");
+
+    if (!csrftoken) {
+        alert("CSRF error.");
+        return;
+    }
+    
     try {
         const response = await fetch("/cart/update/", {
             method: "POST",
@@ -295,5 +316,3 @@ function getCookie(name) {
 
     return cookieValue;
 }
-
-window.csrftoken = getCookie("csrftoken");
