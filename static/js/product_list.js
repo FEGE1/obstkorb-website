@@ -104,7 +104,6 @@ async function fetchProducts() {
             method: "GET",
             headers: {
                 "X-Requested-With": "XMLHttpRequest",
-                "X-CSRFToken": window.csrftoken
             }
         });
 
@@ -163,6 +162,13 @@ document.addEventListener("click", async (e) => {
 
     const productId = btn.dataset.productId;
 
+    const csrftoken = getCookie("csrftoken");
+
+    if (!csrftoken) {
+        alert("CSRF error.");
+        return;
+    }
+
     try {
         btn.disabled = true;
 
@@ -170,7 +176,7 @@ document.addEventListener("click", async (e) => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "X-CSRFToken": window.csrftoken
+                "X-CSRFToken": csrftoken
             },
             credentials: "same-origin",
             body: JSON.stringify({
