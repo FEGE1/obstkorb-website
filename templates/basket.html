@@ -121,7 +121,10 @@
                         <label for="{{ form.phone.id_for_label }}">
                             Telefon <span class="required">*</span>
                         </label>
-                        {{ form.phone }}
+                        <div class="phone-input-wrapper">
+                            <span class="phone-prefix">+49</span>
+                            {{ form.phone }}
+                        </div>
                         {% for error in form.phone.errors %}
                             <p class="field-error">{{ error }}</p>
                         {% endfor %}

@@ -3,6 +3,19 @@ from .models import Order
 
 
 class OrderCreateForm(forms.ModelForm):
+    phone = forms.CharField(
+        max_length=11,
+        widget=forms.TextInput(attrs={
+            "class": "custom-input",
+            "type": "tel",
+            "inputmode": "numeric",
+            "autocomplete": "tel-national",
+            "placeholder": "1512345678",
+            "pattern": "[0-9]*",
+            "maxlength": "11",
+        })
+    )
+    
     city = forms.ChoiceField(
         choices=[
             ("Hamburg", "Hamburg"),
@@ -46,10 +59,6 @@ class OrderCreateForm(forms.ModelForm):
                 "placeholder": "Straße und Hausnummer",
                 "class": "custom-input"
             }),
-            "phone": forms.TextInput(attrs={
-                "placeholder": "+49 30 12345678",
-                "class": "custom-input"
-            }),
             "note": forms.Textarea(attrs={
                 "placeholder": "Nachricht (z.B. Sonderwünsche/Unverträglichkeiten)",
                 "class": "custom-textarea"
@@ -66,3 +75,12 @@ class OrderCreateForm(forms.ModelForm):
                 "Bitte stimmen Sie der Datenschutzerklärung zu."
             )
         return value
+    
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        instance.phone = f"+49{self.cleaned_data['phone']}"
+
+        if commit:
+            instance.save()
+
+        return instance

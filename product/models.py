@@ -63,7 +63,7 @@ class Order(models.Model):
     email = models.EmailField()
     address = models.CharField(max_length=255)
     city = models.CharField(max_length=120)
-    phone = models.CharField(max_length=30)
+    phone = models.CharField(max_length=15)
 
     company = models.CharField(max_length=255, blank=True)
     recipient_name = models.CharField(max_length=255, blank=True)
