@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from main.views import index, about, contact, basket
+from main.views import index, about, contact, basket, orderConfirm
 
 # Media
 from django.conf import settings
@@ -28,6 +28,7 @@ urlpatterns = [
     path('about/', about, name='about'),
     path('contact/', contact, name='contact'),
     path('basket/', basket, name='basket'),
+    path("order-confirm/", orderConfirm, name="orderConfirm"),
     path('product/', include("product.urls")),
     path('cart/', include("cart.urls"))
 ] + static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)

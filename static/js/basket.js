@@ -232,6 +232,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     approveBtn.addEventListener("click", function () {
+        approveBtn.disabled = true;
+        approveBtn.textContent = "Wird gesendet...";
         approved = true;
         modal.classList.add("hidden");
         document.body.style.overflow = "";
@@ -244,4 +246,10 @@ document.addEventListener("DOMContentLoaded", function () {
             document.body.style.overflow = "";
         }
     });
+});
+
+window.addEventListener("pageshow", function (event) {
+    if (event.persisted) {
+        window.location.reload();
+    }
 });

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarısoy Obstkorb</title>
+    <link rel="stylesheet" href="{% static "css/order_confirm.css" %}">
+</head>
+<body>
+    <div class="confirm-page">
+        <div class="confirm-card">
+            <div class="icon">✓</div>
+
+            <p class="title">Ihre Bestellung wurde erfolgreich erstellt.</p>
+
+            <p class="content">
+                Der Inhalt Ihres Warenkorbs sowie alle Bestelldetails wurden an
+                <span>{{ email }}</span>
+                gesendet.
+            </p>
+
+            <a href="{% url 'index' %}" class="home-btn">Zur Startseite</a>
+        </div>
+    </div>
+</body>
+</html>
