@@ -46,7 +46,7 @@
         <section id="sc2">
             <div class="container">
                 <p class="title">Bestellinformationen</p>
-                <form method="POST" class="form-grid">
+                <form method="POST" class="form-grid" id="orderForm">
                     {% csrf_token %}
 
                     {% if form.non_field_errors %}
@@ -160,6 +160,32 @@
                         <button type="submit">Bestellung erstellen</button>
                     </div>
                 </form>
+                <div id="confirmModal" class="confirm-modal hidden">
+                    <div class="confirm-modal-box">
+                        <p class="confirm-title">Bitte überprüfen Sie Ihre Angaben</p>
+                        <p class="confirm-text">Kontrollieren Sie bitte, ob Ihre E-Mail-Adresse und Telefonnummer korrekt sind.</p>
+
+                        <div class="confirm-info">
+                            <div class="confirm-row">
+                                <span>E-Mail:</span>
+                                <strong id="confirmEmail"></strong>
+                            </div>
+                            <div class="confirm-row">
+                                <span>Telefon:</span>
+                                <strong id="confirmPhone"></strong>
+                            </div>
+                        </div>
+
+                        <div class="confirm-actions">
+                            <button type="button" id="cancelConfirm" class="confirm-cancel">
+                                Zurück
+                            </button>
+                            <button type="button" id="approveConfirm" class="confirm-approve">
+                                Bestätigen
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </div>

@@ -415,6 +415,97 @@ color:orange;
     grid-column: 1/5;
 }
 
+/* Confirm PopUp */
+.confirm-modal{
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 99999;
+    padding: 1rem;
+}
+
+.confirm-modal.hidden{
+    display: none;
+}
+
+.confirm-modal-box{
+    width: 100%;
+    max-width: 460px;
+    background: #fff;
+    border-radius: 18px;
+    padding: 1.5rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,.18);
+}
+
+.confirm-title{
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: .5rem;
+}
+
+.confirm-text{
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.confirm-info{
+    background: #f8f8f8;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.confirm-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: .45rem 0;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.confirm-row:last-child{
+    border-bottom: none;
+}
+
+.confirm-row span{
+    color: #666;
+}
+
+.confirm-row strong{
+    color: #111;
+    text-align: right;
+    word-break: break-word;
+}
+
+.confirm-actions{
+    display: flex;
+    gap: .75rem;
+}
+
+.confirm-actions button{
+    flex: 1;
+    height: 48px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.confirm-cancel{
+    background: #ececec;
+    color: #222;
+}
+
+.confirm-approve{
+    background: rgb(217, 164, 29);
+    color: white;
+}
+
 @media(max-width: 1130px){
     #sc2 .name{
         grid-row:1;
@@ -530,5 +621,21 @@ color:orange;
     #sc2 .button{
         grid-row: 9;
         grid-column: 1/5;
+    }
+}
+
+@media(max-width: 350px){
+    .confirm-row{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: .5rem;
+        padding: .45rem 0;
+        border-bottom: 1px solid #e8e8e8;
+    }
+
+    .confirm-info{
+        padding: .5rem 1rem;
     }
 }

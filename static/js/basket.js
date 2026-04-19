@@ -195,3 +195,53 @@ function hideBasketLoader() {
     const overlay = ensureBasketLoader();
     if (overlay) overlay.classList.remove("active");
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("orderForm");
+    const modal = document.getElementById("confirmModal");
+    const confirmEmail = document.getElementById("confirmEmail");
+    const confirmPhone = document.getElementById("confirmPhone");
+    const cancelBtn = document.getElementById("cancelConfirm");
+    const approveBtn = document.getElementById("approveConfirm");
+
+    if (!form) return;
+
+    let approved = false;
+
+    form.addEventListener("submit", function (e) {
+        if (approved) return;
+
+        e.preventDefault();
+
+        const emailInput = form.querySelector('input[name="email"]');
+        const phoneInput = form.querySelector('input[name="phone"]');
+
+        const emailValue = emailInput ? emailInput.value.trim() : "";
+        const phoneValue = phoneInput ? phoneInput.value.trim() : "";
+
+        confirmEmail.textContent = emailValue || "-";
+        confirmPhone.textContent = phoneValue ? `+49 ${phoneValue}` : "-";
+
+        modal.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+    });
+
+    cancelBtn.addEventListener("click", function () {
+        modal.classList.add("hidden");
+        document.body.style.overflow = "";
+    });
+
+    approveBtn.addEventListener("click", function () {
+        approved = true;
+        modal.classList.add("hidden");
+        document.body.style.overflow = "";
+        form.submit();
+    });
+
+    modal.addEventListener("click", function (e) {
+        if (e.target === modal) {
+            modal.classList.add("hidden");
+            document.body.style.overflow = "";
+        }
+    });
+});
