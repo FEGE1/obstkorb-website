@@ -11,6 +11,7 @@ from product.models import Product
 
 from django.views.decorators.csrf import csrf_exempt
 
+@csrf_exempt
 @require_GET
 def cart_data(request):
     return JsonResponse(build_cart_response(request))

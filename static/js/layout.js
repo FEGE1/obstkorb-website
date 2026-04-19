@@ -99,13 +99,7 @@ async function loadCart() {
     }
 
     try {
-        const response = await fetch("/cart/data/", {
-            method: "GET",
-            headers: {
-                "X-CSRFToken": csrftoken
-            },
-            credentials: "same-origin"
-        });
+        const response = await fetch("/cart/data/");
         
         const data = await response.json();
         renderCart(data);
@@ -244,7 +238,7 @@ async function updateCartQuantity(productId, action) {
         alert("CSRF error.");
         return;
     }
-    
+
     try {
         const response = await fetch("/cart/update/", {
             method: "POST",

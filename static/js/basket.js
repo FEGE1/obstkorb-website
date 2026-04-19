@@ -74,12 +74,19 @@ document.addEventListener("DOMContentLoaded", async function () {
 async function removeFromBasket(productId) {
     showBasketLoader();
 
+    const csrftoken = getCookie("csrftoken");
+
+    if (!csrftoken) {
+        alert("CSRF error.");
+        return;
+    }
+
     try {
         const response = await fetch("/cart/remove/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "X-CSRFToken": window.csrftoken
+                "X-CSRFToken": csrftoken
             },
             credentials: "same-origin",
             body: JSON.stringify({
@@ -104,12 +111,19 @@ async function removeFromBasket(productId) {
 
 //Basket Update Item
 async function updateBasketQuantity(productId, action) {
+    const csrftoken = getCookie("csrftoken");
+
+    if (!csrftoken) {
+        alert("CSRF error.");
+        return;
+    }
+
     try {
         const response = await fetch("/cart/update/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "X-CSRFToken": window.csrftoken,
+                "X-CSRFToken": csrftoken,
             },
             body: JSON.stringify({
                 product_id: productId,
