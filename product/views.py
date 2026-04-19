@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.views.decorators.csrf import ensure_csrf_cookie
 
 # Create your views here.
+@ensure_csrf_cookie
 def product_list(request):
     products = Product.objects.all().order_by("-sales_count")
 

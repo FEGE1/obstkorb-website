@@ -4,16 +4,21 @@ from product.forms import OrderCreateForm
 from cart.utils import build_cart_response
 from decimal import Decimal
 from product.models import OrderItem
+from django.views.decorators.csrf import ensure_csrf_cookie
 
+@ensure_csrf_cookie
 def index(request):
     return render(request, 'index.html', context={"page":1})
 
+@ensure_csrf_cookie
 def about(request):
     return render(request, 'about_us.html', context={"page":3})
 
+@ensure_csrf_cookie
 def contact(request):
     return render(request, 'contact.html', context={"page":4})   
 
+@ensure_csrf_cookie
 def basket(request):
     if request.method == "POST":
         form = OrderCreateForm(request.POST)
