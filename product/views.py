@@ -4,6 +4,7 @@ from django.views.decorators.http import require_GET, require_POST
 from django.http import JsonResponse
 from django.urls import reverse
 from django.views.decorators.csrf import ensure_csrf_cookie
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 @ensure_csrf_cookie
@@ -18,6 +19,7 @@ def product_detail2(request, pk):
     return render(request,'product_detail2.html',{"product":product})
 
 # Endpoints
+@csrf_exempt
 @require_GET
 def product_list_api(request):
     search = request.GET.get("search", "").strip()
@@ -63,6 +65,7 @@ def product_list_api(request):
 
     return JsonResponse(data)
 
+@csrf_exempt
 @require_GET
 def product_list_index_api(request):
     search = request.GET.get("search", "").strip()

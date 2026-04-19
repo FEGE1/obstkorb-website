@@ -47,12 +47,6 @@ function renderProducts(products) {
 }
 
 async function fetchProducts() {
-
-    if (!csrftoken) {
-        alert("CSRF error.");
-        return;
-    }
-
     try {
         if (productList) {
             productList.classList.add("loading");
