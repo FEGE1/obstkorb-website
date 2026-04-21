@@ -16,7 +16,17 @@ def product_list(request):
 @ensure_csrf_cookie
 def product_detail2(request, pk):
     product = get_object_or_404(Product, id=pk)
-    return render(request,'product_detail2.html',{"product":product})
+
+    if product.category == "fruit_basket" or product.category == "mix_basket":
+        similars = Product.objects.order_by("-sales_count")[:10]
+    else:
+        similars = Product.objects.filter(
+            category=product.category
+        ).exclude(
+            id=product.id
+        ).order_by("?")[:10]
+    
+    return render(request,'product_detail2.html',{"product":product,"similars":similars})
 
 # Endpoints
 @csrf_exempt
