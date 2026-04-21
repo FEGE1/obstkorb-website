@@ -115,13 +115,11 @@
 
             <div class="scroller">
                 {% for item in similars %}
-                <a href="{% url "product:product_detail2" pk=item.id %}">
-                    <div class="item">
-                        <img src="{{item.image_1.url}}" alt="page not found.">
-                        <p>{{item.title}}</p>
-                        <p><span style="font-size:.8em;color:rgb(59, 59, 59);">Ab</span> {{ item.price|price_format }} €</p>
-                        <button>Jetzt Bestellen</button>
-                    </div>
+                <a href="{% url "product:product_detail2" pk=item.id %}" class="item">
+                    <img src="{{item.image_1.url}}" alt="page not found.">
+                    <p>{{item.title}}</p>
+                    <p><span style="font-size:.8em;color:rgb(59, 59, 59);">Ab</span> {{ item.price|price_format }} €</p>
+                    <button>Jetzt Bestellen</button>
                 </a>
                 {% endfor %}
             </div>
