@@ -1,1 +1,145 @@
 {% extends "layout.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static "css/about_us.css" %}">
+{% endblock extra_css %}
+
+{% block BodyBlock %}
+<main class="container">
+  <section class="hero-section">
+    <div class="hero-content">
+      <span class="eyebrow">Über uns</span>
+      <h1>Frisches Obst in Hamburg – <span>einfach bestellt</span>, zuverlässig geliefert</h1>
+      <p>
+        Ob für Ihr Büro oder Ihr Zuhause: Wir liefern hochwertige Obstkörbe
+        frisch und flexibel direkt zu Ihnen – ganz ohne komplizierte Prozesse.
+      </p>
+      <a href="#story" role="button" class="primary-btn">Jetzt Obstkorb entdecken</a>
+    </div>
+
+    <div class="hero-image">
+      <img src="assets/about-hero-fruitbasket.png" alt="Frischer Obstkorb in Hamburg" />
+    </div>
+  </section>
+
+  <section class="intro-cards">
+    <article>
+      <div class="icon">🍎</div>
+      <h3>Frische, die überzeugt</h3>
+      <p>
+        Unsere Früchte werden sorgfältig ausgewählt – für besten Geschmack
+        und hohe Qualität.
+      </p>
+    </article>
+
+    <article>
+      <div class="icon">🧺</div>
+      <h3>Für Unternehmen & Privatkunden</h3>
+      <p>
+        Ob Büro, Praxis oder Zuhause – wir liefern genau das, was Sie brauchen.
+      </p>
+    </article>
+
+    <article>
+      <div class="icon">🚚</div>
+      <h3>Einfach & flexibel</h3>
+      <p>
+        Bestellen Sie unkompliziert – wir liefern schnell und zuverlässig
+        in Hamburg.
+      </p>
+    </article>
+  </section>
+
+  <section id="story" class="story-section">
+    <div class="story-image">
+      <img src="assets/about-team-market.png" alt="Frische Früchte und persönlicher Service" />
+    </div>
+
+    <div class="story-content">
+      <span class="eyebrow">Unsere Idee</span>
+      <h2>Frisches Obst sollte einfach zugänglich sein</h2>
+      <p>
+        Wir glauben: Frisches Obst sollte einfach zugänglich sein – für
+        Unternehmen genauso wie für Privatkunden.
+      </p>
+      <p>
+        Deshalb haben wir Sarisoy Obstkorb gegründet. Unser Ziel ist es,
+        Menschen in Hamburg unkompliziert mit frischem, hochwertigem Obst
+        zu versorgen – ohne unnötige Komplexität oder lange Wartezeiten.
+      </p>
+      <p>
+        Ob für motivierte Mitarbeiter im Büro oder gesunde Snacks zuhause:
+        Wir liefern genau das, was Sie brauchen – frisch, flexibel und
+        zuverlässig.
+      </p>
+
+      <div class="features">
+        <div>
+          <strong>Qualität</strong>
+          <p>Nur frische, sorgfältig ausgewählte Früchte.</p>
+        </div>
+        <div>
+          <strong>Flexibilität</strong>
+          <p>Bestellen Sie nach Bedarf – ganz ohne Verpflichtungen.</p>
+        </div>
+        <div>
+          <strong>Service</strong>
+          <p>Persönlich, zuverlässig und direkt in Hamburg.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="why-section">
+    <h2>Warum Kunden in Hamburg uns wählen</h2>
+    <p class="section-subtitle">
+      Mehr als nur Obst – wir liefern Frische, die ankommt.
+    </p>
+
+    <div class="why-grid">
+      <article>
+        <img src="assets/altes-land.png" alt="Regionale und saisonale Früchte" />
+        <h3>Regionaler Fokus</h3>
+        <p>
+          Wir liefern direkt in Hamburg – schnell, persönlich und zuverlässig.
+        </p>
+      </article>
+
+      <article>
+        <img src="assets/grossmarkt.png" alt="Frisch zusammengestellter Obstkorb" />
+        <h3>Frisch zusammengestellt</h3>
+        <p>
+          Jeder Obstkorb wird individuell vorbereitet und mit frischen Produkten
+          zusammengestellt.
+        </p>
+      </article>
+
+      <article>
+        <img src="assets/delivery.png" alt="Obst Lieferung in Hamburg" />
+        <h3>Für jeden Bedarf</h3>
+        <p>
+          Ob Einzelbestellung oder größere Mengen für Unternehmen – wir bleiben
+          flexibel.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div>
+      <span class="eyebrow">Frische Energie für Ihren Alltag</span>
+      <h2>Obstkorb in Hamburg bestellen</h2>
+      <p>
+        Bestellen Sie jetzt Ihren Obstkorb und genießen Sie gesunde Qualität –
+        direkt geliefert in Hamburg.
+      </p>
+      <p>
+        <strong>Bezahlung bei Lieferung – einfach und unkompliziert.</strong>
+      </p>
+    </div>
+
+    <a href="#" role="button" class="primary-btn">Jetzt Obstkorb bestellen</a>
+  </section>
+</main>
+{% endblock BodyBlock %}

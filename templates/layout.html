@@ -21,7 +21,7 @@
             <div id="page-list">
                 <div class="page-list-item"><a href="{% url "index" %}">Startseite</a><div class="page-list-select"></div></div>
                 <div class="page-list-item"><a href="{% url "product:product_list" %}">Produkte</a><div class="page-list-select"></div></div>
-                <div class="page-list-item"><a href="#">Über uns</a><div class="page-list-select"></div></div>
+                <div class="page-list-item"><a href="{% url "about" %}">Über uns</a><div class="page-list-select"></div></div>
                 <div class="page-list-item"><a href="#">Kontakt</a><div class="page-list-select"></div></div>
             </div>
             {% if page != 5 %}
