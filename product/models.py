@@ -33,8 +33,8 @@ class Product(models.Model):
     desc_2 = models.TextField(null=True, blank=True)
 
     image_1 = models.ImageField(upload_to="products/")
-    image_2 = models.ImageField(upload_to="products/")
-    image_3 = models.ImageField(upload_to="products/")
+    image_2 = models.ImageField(upload_to="products/", null=True, blank=True)
+    image_3 = models.ImageField(upload_to="products/", null=True, blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
