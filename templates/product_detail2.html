@@ -17,9 +17,12 @@
                 <button class="nav prev" onclick="prevImage()">‹</button>
 
                 <img src="{{product.image_1.url}}"  onclick="changeImage(this)" class="active">
+                {% if product.image_2 %}
                 <img src="{{product.image_2.url}}"  onclick="changeImage(this)">
+                {% endif %}
+                {% if product.image_3 %}
                 <img src="{{product.image_3.url}}"  onclick="changeImage(this)">
-
+                {% endif %}
                 <button class="nav next" onclick="nextImage()">›</button>
             </div>
         </div>
