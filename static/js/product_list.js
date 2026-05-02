@@ -13,6 +13,8 @@ function buildItemsText(product) {
         return "Preis pro 1 kg";
     }
 
+    return `Mit saisonalem obst und gemüse`;
+    /*
     const items = (product.items || []).slice(0, 5);
 
     if (items.length === 0) {
@@ -27,6 +29,7 @@ function buildItemsText(product) {
     const firstItems = items.slice(0, -1);
 
     return `Getuit mit ${firstItems.join(", ")} & ${lastItem}`;
+    */
 }
 
 function buildVitaminsHTML(vitamins) {
