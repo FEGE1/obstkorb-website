@@ -19,7 +19,7 @@
     </div>
 
     <div class="hero-image">
-      <img src="assets/about-hero-fruitbasket.png" alt="Frischer Obstkorb in Hamburg" />
+      <img src="{% static "images/AboutUs3.jpeg" %}" alt="Frischer Obstkorb in Hamburg" />
     </div>
   </section>
 
@@ -53,7 +53,7 @@
 
   <section id="story" class="story-section">
     <div class="story-image">
-      <img src="assets/about-team-market.png" alt="Frische Früchte und persönlicher Service" />
+      <img src="{% static "images/AboutUs1.jpeg" %}" alt="Frische Früchte und persönlicher Service" />
     </div>
 
     <div class="story-content">
@@ -99,7 +99,7 @@
 
     <div class="why-grid">
       <article>
-        <img src="assets/altes-land.png" alt="Regionale und saisonale Früchte" />
+        <img src="{% static "images/AboutUs4.jpeg" %}" alt="Regionale und saisonale Früchte" />
         <h3>Regionaler Fokus</h3>
         <p>
           Wir liefern direkt in Hamburg – schnell, persönlich und zuverlässig.
@@ -107,7 +107,7 @@
       </article>
 
       <article>
-        <img src="assets/grossmarkt.png" alt="Frisch zusammengestellter Obstkorb" />
+        <img src="{% static "images/AboutUs2.jpeg" %}" alt="Frisch zusammengestellter Obstkorb" />
         <h3>Frisch zusammengestellt</h3>
         <p>
           Jeder Obstkorb wird individuell vorbereitet und mit frischen Produkten
@@ -116,7 +116,7 @@
       </article>
 
       <article>
-        <img src="assets/delivery.png" alt="Obst Lieferung in Hamburg" />
+        <img src="{% static "images/AboutUs5.jpeg" %}" alt="Obst Lieferung in Hamburg" />
         <h3>Für jeden Bedarf</h3>
         <p>
           Ob Einzelbestellung oder größere Mengen für Unternehmen – wir bleiben
@@ -139,7 +139,7 @@
       </p>
     </div>
 
-    <a href="#" role="button" class="primary-btn">Jetzt Obstkorb bestellen</a>
+    <a href="{% url "product:product_list" %}" role="button" class="primary-btn">Jetzt Obstkorb bestellen</a>
   </section>
 </main>
 {% endblock BodyBlock %}
