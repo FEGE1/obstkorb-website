@@ -80,7 +80,7 @@ main.container {
   box-shadow: 0 12px 34px rgba(0, 0, 0, 0.04);
 }
 
-.icon {
+.intro-cards .icon {
   width: 58px;
   height: 58px;
   border: 1px solid #e4a213;
