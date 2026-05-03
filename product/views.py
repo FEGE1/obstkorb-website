@@ -63,6 +63,7 @@ def product_list_api(request):
                 "price": float(product.price),
                 "category": product.category,
                 "category_label": product.get_category_display(),
+                "sales_type": product.sales_type,
                 "tag": product.tag,
                 "items": product.items or [],
                 "vitamins": product.vitamins or [],
