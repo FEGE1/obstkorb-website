@@ -8,6 +8,10 @@ class Product(models.Model):
         MIX_BASKET = "mix_basket", "Fruit & Vegetable Basket"
         FRUIT = "fruit", "Fruit"
         VEGETABLE = "vegetable", "Vegetable"
+    
+    class SalesType(models.TextChoices):
+        BY_PIECE = "by_piece", "Sold by the piece"
+        BY_KILOGRAM = "by_kilogram", "Sold by the kilogram"
 
     id = models.UUIDField(
         primary_key=True,
@@ -20,8 +24,14 @@ class Product(models.Model):
     sales_count = models.PositiveIntegerField(default=0)
 
     category = models.CharField(
-        max_length=50,
-        choices=Category.choices
+        max_length= 50,
+        choices= Category.choices
+    )
+
+    sales_type = models.CharField(
+        max_length= 50,
+        choices= SalesType.choices,
+        default= SalesType.BY_KILOGRAM
     )
 
     tag = models.CharField(max_length=100, null=True, blank=True)
