@@ -22,7 +22,7 @@
                 <div class="page-list-item"><a href="{% url "index" %}">Startseite</a><div class="page-list-select"></div></div>
                 <div class="page-list-item"><a href="{% url "product:product_list" %}">Produkte</a><div class="page-list-select"></div></div>
                 <div class="page-list-item"><a href="{% url "about" %}">Über uns</a><div class="page-list-select"></div></div>
-                <div class="page-list-item"><a href="#">Kontakt</a><div class="page-list-select"></div></div>
+                <div class="page-list-item"><a href="#" class="scrollBottom">Kontakt</a><div class="page-list-select"></div></div>
             </div>
             {% if page != 5 %}
             <div class="shopping-cart">
@@ -136,14 +136,14 @@
                     </a>
                 {% endif %}
                 {% if page == 4 %}
-                    <a href="{% url "contact" %}">
+                    <a href="#" class="scrollBottom">
                         <div class="page active">
                             <i class="fa-solid fa-address-book"></i>
                             <p>Kontakt</p>
                         </div>
                     </a>
                 {% else %}
-                    <a href="{% url "contact" %}">
+                    <a href="#" class="scrollBottom">
                         <div class="page">
                             <i class="fa-regular fa-address-book"></i>
                             <p>Kontakt</p>

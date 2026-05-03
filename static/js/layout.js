@@ -291,6 +291,23 @@ document.addEventListener("click", function (e) {
     }
 });
 
+document.querySelectorAll(".scrollBottom").forEach(function(link) {
+    link.addEventListener("click", function(e) {
+        e.preventDefault();
+
+        if (getComputedStyle(mobileMenu).display !== "none") {
+            closeMobileMenu();
+        }
+
+        setTimeout(function() {
+            window.scrollTo({
+                top: document.documentElement.scrollHeight,
+                behavior: "smooth"
+            });
+        }, 100);
+    });
+});
+
 // CSRF
 function getCookie(name) {
     let cookieValue = null;
