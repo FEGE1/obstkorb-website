@@ -29,6 +29,7 @@ def build_cart_response(request):
             "product_id": str(product.id),
             "name": product.title,
             "quantity": quantity,
+            "sales_type": product.sales_type,
             "unit_price": float(unit_price),
             "line_total": float(line_total),
             "image_url": product.image_1.url if product.image_1 else "",

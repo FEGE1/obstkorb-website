@@ -31,7 +31,7 @@ function renderBasket(data){
                         <div class="options-container">
                             <div class="options">
                                 <button type="button" class="step minus basket-decrease-btn" data-product-id="${item.product_id}" ${item.quantity <= 1 ? "disabled" : ""}>−</button>
-                                <p>${item.quantity} kg</p>
+                                <p>${buildQuantityText(item)}</p>
                                 <button type="button" class="step plus basket-increase-btn" data-product-id="${item.product_id}">+</button>
                             </div>
                         </div>

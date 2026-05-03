@@ -118,6 +118,15 @@ const basketGrandTotal = document.getElementById("basket-grand-total");
 const basketCount = document.getElementById("basket-count");
 const navbarCartBadge = document.getElementById("navbar-cart-badge");
 
+function buildQuantityText(product) {
+
+    if(product.sales_type == "by_kilogram"){
+        return `${product.quantity} kg`;
+    }
+
+    return `${product.quantity}`;
+}
+
 function renderCart(data) {
     if (!basketItemList || !basketGrandTotal || !basketCount) return;
 
@@ -151,7 +160,7 @@ function renderCart(data) {
                         <div class="options-container">
                             <div class="options">
                                 <button type="button" class="step minus cart-decrease-btn" data-product-id="${item.product_id}" ${item.quantity <= 1 ? 'disabled' : ''}>−</button>
-                                <p>${item.quantity} kg</p>
+                                <p>${buildQuantityText(item)}</p>
                                 <button type="button" class="step plus cart-increase-btn" data-product-id="${item.product_id}">+</button>
                             </div>
                         </div>

@@ -41,6 +41,7 @@
                 <div class="options">
                     <button type="button" class="step minus" aria-label="Azalt">−</button>
                     <select name="weight" id="weight">
+                        {% if product.sales_type == "by_kilogram" %}
                         <option value="1" data-person="für ca. 1–2 Personen">1kg</option>
                         <option value="2" data-person="für ca. 2–4 Personen">2kg</option>
                         <option value="3" data-person="für ca. 4–6 Personen">3kg</option>
@@ -51,6 +52,18 @@
                         <option value="8" data-person="für ca. 14–16 Personen">8kg</option>
                         <option value="9" data-person="für ca. 16–18 Personen">9kg</option>
                         <option value="10" data-person="für ca. 18–20 Personen">10kg</option>
+                        {% else %}
+                        <option value="1" data-person="für ca. 1–2 Personen">1</option>
+                        <option value="2" data-person="für ca. 2–4 Personen">2</option>
+                        <option value="3" data-person="für ca. 4–6 Personen">3</option>
+                        <option value="4" data-person="für ca. 6–8 Personen">4</option>
+                        <option value="5" data-person="für ca. 8–10 Personen">5</option>
+                        <option value="6" data-person="für ca. 10–12 Personen">6</option>
+                        <option value="7" data-person="für ca. 12–14 Personen">7</option>
+                        <option value="8" data-person="für ca. 14–16 Personen">8</option>
+                        <option value="9" data-person="für ca. 16–18 Personen">9</option>
+                        <option value="10" data-person="für ca. 18–20 Personen">10</option>
+                        {% endif %}
                     </select>
                     <div><i class="fa-solid fa-chevron-down"></i></div>
                     <button type="button" class="step plus" aria-label="Artır">+</button>
