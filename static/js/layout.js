@@ -120,10 +120,10 @@ const navbarCartBadge = document.getElementById("navbar-cart-badge");
 
 function buildQuantityText(product) {
 
-    if(product.sales_type == "by_kilogram"){
+    /*if(product.sales_type == "by_kilogram"){
         return `${product.quantity} kg`;
     }
-
+    */
     return `${product.quantity}`;
 }
 
@@ -163,6 +163,7 @@ function renderCart(data) {
                                 <p>${buildQuantityText(item)}</p>
                                 <button type="button" class="step plus cart-increase-btn" data-product-id="${item.product_id}">+</button>
                             </div>
+                            <p>(${buildQuantityText(item)} x ${item.desc_1})</p>
                         </div>
                         <div class="bottom">
                             <p class="price">${formatPrice(item.line_total)}</p>

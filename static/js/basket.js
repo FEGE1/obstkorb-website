@@ -34,6 +34,7 @@ function renderBasket(data){
                                 <p>${buildQuantityText(item)}</p>
                                 <button type="button" class="step plus basket-increase-btn" data-product-id="${item.product_id}">+</button>
                             </div>
+                            <p>(${buildQuantityText(item)} x ${item.desc_1})</p>
                         </div>
                     </div>
                 </div>

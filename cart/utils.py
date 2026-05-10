@@ -32,6 +32,7 @@ def build_cart_response(request):
             "sales_type": product.sales_type,
             "unit_price": float(unit_price),
             "line_total": float(line_total),
+            "desc_1": product.desc_1,
             "image_url": product.image_1.url if product.image_1 else "",
             "detail_url": reverse("product:product_detail2", args=[product.id]),
         })
