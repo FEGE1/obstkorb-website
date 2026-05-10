@@ -28,7 +28,7 @@ const plusBtn  = document.querySelector('#section2 .options .plus');
 
 function updateHintAndButtons() {
 const opt = select.selectedOptions[0];
-hint.textContent = `(${opt.dataset.person || ''})`;
+hint.textContent = `${opt.value || ''}`;
 
 // İlk/son option’da butonları disable et
 minusBtn.disabled = (select.selectedIndex === 0);
