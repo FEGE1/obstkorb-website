@@ -9,7 +9,7 @@ from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 @ensure_csrf_cookie
 def product_list(request):
-    products = Product.objects.all().order_by("-sales_count")
+    products = Product.objects.all().order_by("title")
 
     return render(request,'product_list.html',context={"page":2, "products": products})
 
@@ -53,7 +53,7 @@ def product_list_api(request):
     elif sort == "title_asc":
         products = products.order_by("title")
     else:
-        products = products.order_by("-sales_count")
+        products = products.order_by("title")
 
     data = {
         "products": [
