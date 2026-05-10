@@ -17,11 +17,6 @@ const productList = document.querySelector("#section3 .container");
 
 let currentSearch = "suggested";
 
-
-function formatPrice(price) {
-    return String(price).replace(".", ",");
-}
-
 function renderProducts(products) {
     if (!productList) return;
 
@@ -39,7 +34,7 @@ function renderProducts(products) {
             <div class="item">
                 <img src="${product.image_url}" alt="page not found.">
                 <p>${product.title}</p>
-                <p><span style="font-size:.8em;color:rgb(59, 59, 59);">Ab</span> ${formatPrice(product.price)} €</p>
+                <p><span style="font-size:.8em;color:rgb(59, 59, 59);">Ab</span> ${formatPrice(product.price)}</p>
                 <button>Jetzt Bestellen</button>
             </div>
         </a>
