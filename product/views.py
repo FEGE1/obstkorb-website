@@ -84,7 +84,7 @@ def product_list_index_api(request):
     products = Product.objects.all()
 
     if search == "suggested":
-        products = products.filter(tag="suggested")[:4]
+        products = products.filter(tag="suggested").order_by("-price")[:4]
     elif search == "bestseller":
         products = products.order_by("-sales_count")[:4]
     elif search == "new_added":
