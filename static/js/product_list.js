@@ -10,11 +10,13 @@ let currentSort = "default";
 
 function buildItemsText(product) {
     if (product.category === "fruit" || product.category === "vegetable") {
-        if(product.sales_type == "by_kilogram"){
+        /*if(product.sales_type == "by_kilogram"){
             return "Preis pro 1 kg";
         }
 
         return "Preis pro Stück"
+        */
+       return product.desc_1
     }
 
     return `Mit saisonalem obst und gemüse`;
