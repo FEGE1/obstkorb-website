@@ -197,7 +197,7 @@
 }
 
 #sc3 .item .left > div > p:last-of-type{
-    font-size: 1em;
+    font-size: .8em;
     font-weight: 400;
     color: rgb(112, 112, 112);
 }
