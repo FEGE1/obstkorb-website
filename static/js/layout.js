@@ -33,10 +33,6 @@ const basket = document.querySelector('#basket');
 const shoppingCart = document.querySelector('#navbar .shopping-cart');
 const basketClose = document.querySelector("#basket .header i");
 
-if(shoppingCart){
-    shoppingCart.addEventListener("click", openBasket);
-}
-
 if(basketClose){
     basketClose.addEventListener("click", closeBasket);
 }
@@ -127,6 +123,16 @@ function buildQuantityText(product) {
     return `${product.quantity}`;
 }
 
+function buildPackageText(item) {
+    if (!item.package_name) return "";
+
+    const weightText = item.package_weight_kg
+        ? ` · ${Number(item.package_weight_kg).toString().replace(".", ",")} kg`
+        : "";
+
+    return `<p class="package-info">(${item.package_name}${weightText})</p>`;
+}
+
 function renderCart(data) {
     if (!basketItemList || !basketGrandTotal || !basketCount) return;
 
@@ -148,8 +154,14 @@ function renderCart(data) {
     }
 
     data.items.forEach(item => {
+        const packageHTML = buildPackageText(item);
+
+        const itemDescText = item.package_name
+            ? `${item.package_name}${item.package_weight_kg ? " · " + Number(item.package_weight_kg).toString().replace(".", ",") + " kg" : ""}`
+            : item.desc_1;
+
         const itemHTML = `
-                <div class="item" data-product-id="${item.product_id}">
+                <div class="item" data-cart-item-key="${item.cart_item_key}">
                     <a href="${item.detail_url}">
                         <img src="${item.image_url}" alt="${item.name}">
                     </a>
@@ -157,17 +169,40 @@ function renderCart(data) {
                         <a href="${item.detail_url}">
                             <div class="title">${item.name}</div>
                         </a>
+
+                        ${packageHTML}
+
                         <div class="options-container">
                             <div class="options">
-                                <button type="button" class="step minus cart-decrease-btn" data-product-id="${item.product_id}" ${item.quantity <= 1 ? 'disabled' : ''}>−</button>
+                                <button 
+                                    type="button" 
+                                    class="step minus cart-decrease-btn" 
+                                    data-cart-item-key="${item.cart_item_key}" 
+                                    ${item.quantity <= 1 ? 'disabled' : ''}
+                                >
+                                    −
+                                </button>
+
                                 <p>${buildQuantityText(item)}</p>
-                                <button type="button" class="step plus cart-increase-btn" data-product-id="${item.product_id}">+</button>
+
+                                <button 
+                                    type="button" 
+                                    class="step plus cart-increase-btn" 
+                                    data-cart-item-key="${item.cart_item_key}"
+                                >
+                                    +
+                                </button>
                             </div>
-                            <p>(${buildQuantityText(item)} x ${item.desc_1})</p>
+
+                            ${!item.package_name ? `<p>(${buildQuantityText(item)} x ${itemDescText})</p>` : ""}
                         </div>
+
                         <div class="bottom">
                             <p class="price">${formatPrice(item.line_total)}</p>
-                            <div class="delete cart-remove-btn" data-product-id="${item.product_id}">
+                            <div 
+                                class="delete cart-remove-btn" 
+                                data-cart-item-key="${item.cart_item_key}"
+                            >
                                 <i class="fa-regular fa-trash-can"></i>
                                 <p>Entfernen</p>
                             </div>
@@ -207,7 +242,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 });
 
 // Cart Remove
-async function removeFromCart(productId) {
+async function removeFromCart(cartItemKey) {
     const csrftoken = getCookie("csrftoken");
 
     if (!csrftoken) {
@@ -224,7 +259,7 @@ async function removeFromCart(productId) {
             },
             credentials: "same-origin",
             body: JSON.stringify({
-                product_id: productId
+                cart_item_key: cartItemKey,
             })
         });
 
@@ -241,7 +276,7 @@ async function removeFromCart(productId) {
     }
 }
 
-async function updateCartQuantity(productId, action) {
+async function updateCartQuantity(cartItemKey, action) {
     const csrftoken = getCookie("csrftoken");
 
     if (!csrftoken) {
@@ -256,8 +291,9 @@ async function updateCartQuantity(productId, action) {
                 "Content-Type": "application/json",
                 "X-CSRFToken": csrftoken,
             },
+            credentials: "same-origin",
             body: JSON.stringify({
-                product_id: productId,
+                cart_item_key: cartItemKey,
                 action: action,
             }),
         });
@@ -281,22 +317,22 @@ document.addEventListener("click", function (e) {
     const removeBtn = e.target.closest(".cart-remove-btn");
 
     if (increaseBtn) {
-        const productId = increaseBtn.dataset.productId;
-        updateCartQuantity(productId, "increase");
+        const cartItemKey = increaseBtn.dataset.cartItemKey;
+        updateCartQuantity(cartItemKey, "increase");
         return;
     }
 
     if (decreaseBtn) {
         if (decreaseBtn.disabled) return;
-        
-        const productId = decreaseBtn.dataset.productId;
-        updateCartQuantity(productId, "decrease");
+
+        const cartItemKey = decreaseBtn.dataset.cartItemKey;
+        updateCartQuantity(cartItemKey, "decrease");
         return;
     }
 
     if (removeBtn) {
-        const productId = removeBtn.dataset.productId;
-        removeFromCart(productId);
+        const cartItemKey = removeBtn.dataset.cartItemKey;
+        removeFromCart(cartItemKey);
         return;
     }
 });

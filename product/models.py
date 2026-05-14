@@ -49,12 +49,68 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    @property
+    def has_package_options(self):
+        return self.category in [
+            self.Category.FRUIT_BASKET,
+            self.Category.MIX_BASKET,
+        ]
+
     class Meta:
         db_table = "Product"
         ordering = ["-created_at"]
 
     def __str__(self):
         return self.title
+    
+class ProductPackage(models.Model):
+    class PackageSize(models.TextChoices):
+        SMALL = "small", "Small"
+        MEDIUM = "medium", "Medium"
+        LARGE = "large", "Large"
+
+    id = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False
+    )
+
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        related_name="packages"
+    )
+
+    size = models.CharField(
+        max_length=20,
+        choices=PackageSize.choices
+    )
+
+    weight_kg = models.DecimalField(
+        max_digits=5,
+        decimal_places=2
+    )
+
+    price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2
+    )
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = "ProductPackage"
+        ordering = ["weight_kg"]
+        constraints = [
+            models.UniqueConstraint(
+                fields=["product", "size"],
+                name="unique_package_size_per_product"
+            )
+        ]
+
+    def __str__(self):
+        return f"{self.product.title} - {self.get_size_display()} ({self.weight_kg}kg)"
 
 class Order(models.Model):
     class StatusChoices(models.TextChoices):

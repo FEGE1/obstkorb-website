@@ -1,9 +1,17 @@
 from django.contrib import admin
-from product.models import Product, Order, OrderItem
+from product.models import Product, ProductPackage,Order, OrderItem
+
+class ProductPackageInline(admin.TabularInline):
+    model = ProductPackage
+    extra = 3
+    fields = ("size", "weight_kg", "price")
+    min_num = 0
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     search_fields = ["title"]
+
+    inlines = [ProductPackageInline]
 
 class OrderItemInline(admin.TabularInline):
     model = OrderItem

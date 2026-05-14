@@ -77,10 +77,14 @@ function renderProducts(products) {
                         <button 
                             class="add-to-cart-btn"
                             data-product-id="${product.id}"
+                            data-has-package-options="${product.has_package_options}"
+                            data-detail-url="${product.detail_url}"
                         >
                             <div>
                                 <i class="fa-solid fa-cart-plus"></i>
-                                <p>In den Warenkorb</p>
+                                <p>
+                                    ${product.has_package_options ? "Paket auswählen" : "In den Warenkorb"}
+                                </p>
                             </div>
                         </button>
 
@@ -170,6 +174,14 @@ document.addEventListener("click", async (e) => {
     e.stopPropagation();
 
     const productId = btn.dataset.productId;
+    
+    const hasPackageOptions = btn.dataset.hasPackageOptions === "true";
+    const detailUrl = btn.dataset.detailUrl;
+
+    if (hasPackageOptions) {
+        window.location.href = detailUrl;
+        return;
+    }
 
     const csrftoken = getCookie("csrftoken");
 

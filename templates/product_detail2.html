@@ -32,16 +32,94 @@
         <div class="container">
             <div class="head">
                 <p class="title"><span style="color:black;">{{product.title}}</span></p>
-                <p class="price"><span style="font-size:.8em;font-weight:400;">Ab</span> {{product.price|price_format}} €</p>
+                <p class="price">
+                    <span id="dynamic-product-price">
+                        {% if product.has_package_options and product.packages.first %}
+                            {{ product.packages.first.price|price_format }} €
+                        {% else %}
+                            {{ product.price|price_format }} €
+                        {% endif %}
+                    </span>
+                </p>
                 <p class="desc">inkl. MwSt. und Versandkosten</p>
                 <hr>
             </div>
-            <small style="font-size:.8em;">(<span id="personHint"></span> x {{product.desc_1}})</small>
+            {% if product.has_package_options %}
+            <small style="font-size:.8em;">
+                Paket auswählen
+            </small>
+
+            <div class="package-selector" id="package-selector">
+                {% for package in product.packages.all %}
+                    <label class="package-option {% if forloop.first %}active{% endif %}">
+                        <input 
+                            type="radio"
+                            name="package_id"
+                            value="{{ package.id }}"
+                            data-weight="{{ package.weight_kg }}"
+                            data-price="{{ package.price }}"
+                            data-size="{{ package.size }}"
+                            {% if forloop.first %}checked{% endif %}
+                        >
+
+                        <div class="package-content">
+                            <div class="right">
+                                <span class="package-name">
+                                    {{ package.get_size_display }}
+                                </span>
+                                <p class="package-weight">
+                                    {{ package.weight_kg }} kg
+                                </p>
+                            </div>
+
+                            <span class="package-price">
+                                {{ package.price|price_format }} €
+                            </span>
+                        </div>
+                    </label>
+                {% empty %}
+                    <p>Für dieses Produkt wurden noch keine Pakete hinzugefügt.</p>
+                {% endfor %}
+                <small style="font-size:.8em; display:block; margin-top:14px;">
+                    ( <span id="personHint"></span> x ausgewähltes Paket )
+                </small>
+
+                <div id="options-container">
+                    <div class="options">
+                        <button type="button" class="step minus">−</button>
+
+                        <select name="weight" id="weight">
+                            <option value="1" data-person="1 Paket">1</option>
+                            <option value="2" data-person="2 Pakete">2</option>
+                            <option value="3" data-person="3 Pakete">3</option>
+                            <option value="4" data-person="4 Pakete">4</option>
+                            <option value="5" data-person="5 Pakete">5</option>
+                            <option value="6" data-person="6 Pakete">6</option>
+                            <option value="7" data-person="7 Pakete">7</option>
+                            <option value="8" data-person="8 Pakete">8</option>
+                            <option value="9" data-person="9 Pakete">9</option>
+                            <option value="10" data-person="10 Pakete">10</option>
+                        </select>
+
+                        <div>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+
+                        <button type="button" class="step plus">+</button>
+                    </div>
+                </div>
+            </div>
+
+            {% else %}
+            <small style="font-size:.8em;">
+                (<span id="personHint"></span> x {{ product.desc_1 }})
+            </small>
+
             <div id="options-container">
                 <div class="options">
                     <button type="button" class="step minus">−</button>
+
                     <select name="weight" id="weight">
-                        {% if product.sales_type == "by_kilogram" %}
                         <option value="1" data-person="für ca. 1–2 Personen">1</option>
                         <option value="2" data-person="für ca. 2–4 Personen">2</option>
                         <option value="3" data-person="für ca. 4–6 Personen">3</option>
@@ -52,23 +130,17 @@
                         <option value="8" data-person="für ca. 14–16 Personen">8</option>
                         <option value="9" data-person="für ca. 16–18 Personen">9</option>
                         <option value="10" data-person="für ca. 18–20 Personen">10</option>
-                        {% else %}
-                        <option value="1" data-person="für ca. 1–2 Personen">1</option>
-                        <option value="2" data-person="für ca. 2–4 Personen">2</option>
-                        <option value="3" data-person="für ca. 4–6 Personen">3</option>
-                        <option value="4" data-person="für ca. 6–8 Personen">4</option>
-                        <option value="5" data-person="für ca. 8–10 Personen">5</option>
-                        <option value="6" data-person="für ca. 10–12 Personen">6</option>
-                        <option value="7" data-person="für ca. 12–14 Personen">7</option>
-                        <option value="8" data-person="für ca. 14–16 Personen">8</option>
-                        <option value="9" data-person="für ca. 16–18 Personen">9</option>
-                        <option value="10" data-person="für ca. 18–20 Personen">10</option>
-                        {% endif %}
                     </select>
-                    <div><i class="fa-solid fa-chevron-down"></i></div>
+
+                    <div>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+
                     <button type="button" class="step plus">+</button>
                 </div>
             </div>
+        {% endif %}
+            
 
             <div class="delivery">
                 <p>schnelle Lieferung</p>
@@ -76,7 +148,12 @@
             </div>
 
             <div class="buttons">
-                <button class="add-to-cart-btn" data-product-id="{{product.id}}">
+                <button 
+                    class="add-to-cart-btn" 
+                    data-product-id="{{ product.id }}"
+                    data-product-price="{{ product.price }}"
+                    data-has-package-options="{{ product.has_package_options|yesno:'true,false' }}"
+                >
                     <div>
                         <i class="fa-solid fa-cart-plus"></i>
                         <p>In den Warenkorb</p>

@@ -107,7 +107,6 @@
   display: flex;
   align-items: center;
   gap: .8em;
-  margin-top: .5em;
 }
 
 #section2 .options select{
@@ -215,6 +214,63 @@
 
 #section2 button:last-of-type:hover{
     background: linear-gradient(to bottom, white, rgba(0, 0, 0, .03));
+}
+
+.package-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.package-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+    border: 1px solid #e3e3e3;
+    border-radius: 16px;
+    padding: 14px 16px;
+    background: #fff;
+    transition: all 0.2s ease;
+}
+
+.package-option input {
+    margin-top: 4px;
+    accent-color: var(--primary-color);
+}
+
+.package-option.active {
+    border-color: var(--primary-color);
+    background: rgb(217 164 29 / 0.05);
+}
+
+.package-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.package-content > .right{
+  display: flex;
+  align-items: center;
+  gap: .5em;
+}
+
+.package-name {
+    font-weight: 600;
+    color: #222;
+}
+
+.package-price {
+    font-weight: 700;
+    color: var(--primary-color);
+    white-space: nowrap;
+}
+
+.package-weight {
+    font-size: 14px;
+    color: #777;
 }
 /*section2-end*/
 
