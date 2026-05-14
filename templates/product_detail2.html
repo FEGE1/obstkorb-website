@@ -80,32 +80,30 @@
                 {% empty %}
                     <p>Für dieses Produkt wurden noch keine Pakete hinzugefügt.</p>
                 {% endfor %}
-                <small style="font-size:.8em; display:block; margin-top:14px;">
-                    ( <span id="personHint"></span> x ausgewähltes Paket )
-                </small>
-
-                <div id="options-container">
-                    <div class="options">
-                        <button type="button" class="step minus">−</button>
-
-                        <select name="weight" id="weight">
-                            <option value="1" data-person="1 Paket">1</option>
-                            <option value="2" data-person="2 Pakete">2</option>
-                            <option value="3" data-person="3 Pakete">3</option>
-                            <option value="4" data-person="4 Pakete">4</option>
-                            <option value="5" data-person="5 Pakete">5</option>
-                            <option value="6" data-person="6 Pakete">6</option>
-                            <option value="7" data-person="7 Pakete">7</option>
-                            <option value="8" data-person="8 Pakete">8</option>
-                            <option value="9" data-person="9 Pakete">9</option>
-                            <option value="10" data-person="10 Pakete">10</option>
-                        </select>
-
-                        <div>
-                            <i class="fa-solid fa-chevron-down"></i>
+                <div>
+                    <small style="font-size:.8em; display:block; margin-top:14px;">
+                        ( <span id="personHint"></span> x ausgewähltes Paket )
+                    </small>
+                    <div id="options-container">
+                        <div class="options">
+                            <button type="button" class="step minus">−</button>
+                            <select name="weight" id="weight">
+                                <option value="1" data-person="1 Paket">1</option>
+                                <option value="2" data-person="2 Pakete">2</option>
+                                <option value="3" data-person="3 Pakete">3</option>
+                                <option value="4" data-person="4 Pakete">4</option>
+                                <option value="5" data-person="5 Pakete">5</option>
+                                <option value="6" data-person="6 Pakete">6</option>
+                                <option value="7" data-person="7 Pakete">7</option>
+                                <option value="8" data-person="8 Pakete">8</option>
+                                <option value="9" data-person="9 Pakete">9</option>
+                                <option value="10" data-person="10 Pakete">10</option>
+                            </select>
+                            <div>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                            <button type="button" class="step plus">+</button>
                         </div>
-
-                        <button type="button" class="step plus">+</button>
                     </div>
                 </div>
             </div>
