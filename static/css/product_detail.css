@@ -226,7 +226,7 @@
 
 .package-option {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 12px;
     cursor: pointer;
     border: 1px solid #e3e3e3;
@@ -236,9 +236,11 @@
     transition: all 0.2s ease;
 }
 
-.package-option input {
-    margin-top: 4px;
+.package-option input[type="radio"] {
+    margin: 0;
+    padding: 0;
     accent-color: #2f7d32;
+    flex-shrink: 0;
 }
 
 .package-option.active {
