@@ -22,25 +22,54 @@ function renderBasket(data){
     }
 
     data.items.forEach(item => {
+        const packageHTML = buildPackageText(item);
+
+        const itemDescText = item.package_name
+        ? `${item.package_name}${item.package_weight_kg ? " · " + Number(item.package_weight_kg).toString().replace(".", ",") + " kg" : ""}`
+        : item.desc_1;
+
         const mainItemHTML = `
-            <div class="item">
+            <div class="item" data-cart-item-key="${item.cart_item_key}">
                 <div class="left">
                     <img src="${item.image_url}" alt="${item.name}">
                     <div>
                         <p class="title">${item.name}</p>
+
+                        ${packageHTML}
+
                         <div class="options-container">
                             <div class="options">
-                                <button type="button" class="step minus basket-decrease-btn" data-product-id="${item.product_id}" ${item.quantity <= 1 ? "disabled" : ""}>−</button>
+                                <button 
+                                    type="button" 
+                                    class="step minus basket-decrease-btn" 
+                                    data-cart-item-key="${item.cart_item_key}" 
+                                    ${item.quantity <= 1 ? "disabled" : ""}
+                                >
+                                    −
+                                </button>
+
                                 <p>${buildQuantityText(item)}</p>
-                                <button type="button" class="step plus basket-increase-btn" data-product-id="${item.product_id}">+</button>
+
+                                <button 
+                                    type="button" 
+                                    class="step plus basket-increase-btn" 
+                                    data-cart-item-key="${item.cart_item_key}"
+                                >
+                                    +
+                                </button>
                             </div>
-                            <p>(${buildQuantityText(item)} x ${item.desc_1})</p>
+
+                            ${!item.package_name ? `<p>(${buildQuantityText(item)} x ${itemDescText})</p>` : ""}
                         </div>
                     </div>
                 </div>
+
                 <div class="right">
                     <p class="price">${formatPrice(item.line_total)}</p>
-                    <div class="delete basket-remove-btn" data-product-id="${item.product_id}">
+                    <div 
+                        class="delete basket-remove-btn" 
+                        data-cart-item-key="${item.cart_item_key}"
+                    >
                         <i class="fa-regular fa-trash-can"></i>
                         <p>Entfernen</p>
                     </div>
@@ -72,7 +101,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 });
 
 // Basket Delete Item
-async function removeFromBasket(productId) {
+async function removeFromBasket(cartItemKey) {
     showBasketLoader();
 
     const csrftoken = getCookie("csrftoken");
@@ -91,7 +120,7 @@ async function removeFromBasket(productId) {
             },
             credentials: "same-origin",
             body: JSON.stringify({
-                product_id: productId
+                cart_item_key: cartItemKey,
             })
         });
 
@@ -111,7 +140,7 @@ async function removeFromBasket(productId) {
 }
 
 //Basket Update Item
-async function updateBasketQuantity(productId, action) {
+async function updateBasketQuantity(cartItemKey, action) {
     const csrftoken = getCookie("csrftoken");
 
     if (!csrftoken) {
@@ -127,7 +156,7 @@ async function updateBasketQuantity(productId, action) {
                 "X-CSRFToken": csrftoken,
             },
             body: JSON.stringify({
-                product_id: productId,
+                cart_item_key: cartItemKey,
                 action: action,
             }),
         });
@@ -151,22 +180,40 @@ document.addEventListener("click", function(e){
     const basketDecreaseBtn = e.target.closest(".basket-decrease-btn");
 
     if (basketIncreaseBtn) {
-        const product_id = basketIncreaseBtn.dataset.productId;
-        updateBasketQuantity(product_id,"increase");
+        const cartItemKey = basketIncreaseBtn.dataset.cartItemKey;
+        updateBasketQuantity(cartItemKey, "increase");
         return;
     }
 
     if (basketDecreaseBtn) {
-        if(basketDecreaseBtn.disabled) return; 
+        if (basketDecreaseBtn.disabled) return;
 
-        const product_id = basketDecreaseBtn.dataset.productId;
-        updateBasketQuantity(product_id,"decrease");
+        const cartItemKey = basketDecreaseBtn.dataset.cartItemKey;
+        updateBasketQuantity(cartItemKey, "decrease");
         return;
     }
 
     if (basketRemoveBtn) {
-        const product_id = basketRemoveBtn.dataset.productId;
-        removeFromBasket(product_id);
+        const cartItemKey = basketRemoveBtn.dataset.cartItemKey;
+        removeFromBasket(cartItemKey);
+        return;
+    }if (basketIncreaseBtn) {
+        const cartItemKey = basketIncreaseBtn.dataset.cartItemKey;
+        updateBasketQuantity(cartItemKey, "increase");
+        return;
+    }
+
+    if (basketDecreaseBtn) {
+        if (basketDecreaseBtn.disabled) return;
+
+        const cartItemKey = basketDecreaseBtn.dataset.cartItemKey;
+        updateBasketQuantity(cartItemKey, "decrease");
+        return;
+    }
+
+    if (basketRemoveBtn) {
+        const cartItemKey = basketRemoveBtn.dataset.cartItemKey;
+        removeFromBasket(cartItemKey);
         return;
     }
 });
