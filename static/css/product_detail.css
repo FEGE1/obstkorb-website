@@ -238,18 +238,19 @@
 
 .package-option input {
     margin-top: 4px;
-    accent-color: var(--primary-color);
+    accent-color: #2f7d32;
 }
 
 .package-option.active {
-    border-color: var(--primary-color);
-    background: rgb(217 164 29 / 0.05);
+    border-color: #2f7d32;
+    background: #f3faf4;;
 }
 
 .package-content {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  font-size: .9em;
 }
 
 .package-content > .right{
@@ -259,13 +260,12 @@
 }
 
 .package-name {
-    font-weight: 600;
+    font-weight: 500;
     color: #222;
 }
 
 .package-price {
-    font-weight: 700;
-    color: var(--primary-color);
+    font-weight: 600;
     white-space: nowrap;
 }
 
