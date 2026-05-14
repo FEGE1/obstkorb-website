@@ -73,18 +73,22 @@
                 <i class="fa-regular fa-circle-xmark"></i>
             </div>
             {% if page != 5 %}
-            <div class="shopping-cart">
-                <div class="left">
-                    <div class="icon">
-                        <i class="fa-solid fa-cart-shopping"></i>
+            <a href="{% url 'basket' %}" class="mobile-shopping-cart-link">
+                <div class="shopping-cart mobile-shopping-cart">
+                    <div class="left">
+                        <div class="icon">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </div>
+                        <div class="content">
+                            <p>Warenkorb</p>
+                            <p style="font-weight:300;font-size:.8em;margin-top:.4em;">
+                                <span id="mobile-cart-count">0</span> im Korb
+                            </p>
+                        </div>
                     </div>
-                    <div class="content">
-                        <p>Warenkorb</p>
-                        <p style="font-weight:300;font-size:.8em;margin-top:.4em;">3 im Korb</p>
-                    </div>
+                    <i class="fa-solid fa-chevron-right"></i>
                 </div>
-                <i class="fa-solid fa-chevron-right"></i>
-            </div>
+            </a>
             <hr>
             {% endif %}
             <br>

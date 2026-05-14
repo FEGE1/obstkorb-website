@@ -113,6 +113,7 @@ const basketItemList = document.getElementById("basket-item-list");
 const basketGrandTotal = document.getElementById("basket-grand-total");
 const basketCount = document.getElementById("basket-count");
 const navbarCartBadge = document.getElementById("navbar-cart-badge");
+const mobileCartCount = document.getElementById("mobile-cart-count");
 
 function buildQuantityText(product) {
 
@@ -150,6 +151,11 @@ function renderCart(data) {
         if (navbarCartBadge) {
             navbarCartBadge.style.display = "none";
         }
+
+        if (mobileCartCount) {
+            mobileCartCount.textContent = "0";
+        }
+
         return;
     }
 
@@ -216,6 +222,10 @@ function renderCart(data) {
 
     basketGrandTotal.textContent = formatPrice(data.summary.grand_total);
     basketCount.textContent = data.summary.unique_items;
+
+    if (mobileCartCount) {
+        mobileCartCount.textContent = data.summary.unique_items;
+    }
 
     if (navbarCartBadge) {
         navbarCartBadge.style.display = "flex";
