@@ -35,7 +35,7 @@ function renderProducts(products) {
                 <img src="${product.image_url}" alt="page not found.">
                 <p>${product.title}</p>
                 <p><span style="font-size:.8em;color:rgb(59, 59, 59);">Ab</span> ${formatPrice(product.price)}</p>
-                <button>Jetzt Bestellen</button>
+                <button>Jetzt Kaufen</button>
             </div>
         </a>
     `).join("");
