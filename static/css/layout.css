@@ -525,7 +525,7 @@
   color: rgb(82, 82, 82);
 }
 
-#footer .item > div{
+#footer .item div a{
   display: flex;
   align-items: center;
   font-size: 1.2em;
