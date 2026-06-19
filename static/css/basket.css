@@ -147,6 +147,12 @@ hr{
     color: rgb(115, 77, 0);
 }
 
+#total-price > div > p:last-of-type{
+    font-size: .7em;
+    font-weight: 400;
+    color: rgb(80, 80, 80);
+}
+
 #sc1 .container{
     position: relative;
 }
